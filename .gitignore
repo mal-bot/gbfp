@@ -2,3 +2,6 @@
 .idea
 .secret
 /venv/*
+/env/
+/.secret
+gbfp/__pycache__/

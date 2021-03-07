@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import os
 
 
-with open(os.path.join(os.getcwd(), '../.secret')) as secret:
+with open(os.path.join(os.getcwd(), '.secret')) as secret:
     SECRET_KEY = secret.read()
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'personalareaapp',
 ]
 
 MIDDLEWARE = [
