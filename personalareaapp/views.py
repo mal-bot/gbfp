@@ -1,19 +1,16 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.views.generic import ListView
+
+from Vacancy.models import Vacancy
 
 
-# @login_required
-def personal_area(request):
-    user = {'name': 'minkika'}
-    title = 'Личный кабинет'
-    # if request.user.role = 'company':
-    pa_favourites = [1, 2, 3]
-        # .objects.filter(user=request.user)
+class IndexView(ListView):
+    template_name = 'personalareaapp/pa_content.html'
+    model = Vacancy
+    context_object_name = 'vacancies_list'
+    queryset = Vacancy.objects.all()
 
-    content = {
-        'user': user,
-        'title': title,
-        'pa_favourites': pa_favourites,
-    }
-
-    return render(request, 'personalareaapp/pa_content.html', content)
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['favourites_list'] = [1, 2, 3]
+        context['user'] = {'name': 'Иван'}
+        return context

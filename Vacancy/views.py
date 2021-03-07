@@ -10,12 +10,13 @@ class VacancyListView(ListView):
     paginate_by = 10
     title = 'Вакансии'
     ordering = '-is_active'
-    template_name = 'vacancy/vacancy_list.html'
+    # template_name = 'vacancy/vacancy_list.html'
+    template_name = 'personalareaapp/pa_content.html'
 
 
 class VacancyCreateView(CreateView):
     model = Vacancy
-    success_url = reverse_lazy('vacancy:vacancy_list')
+    success_url = reverse_lazy('personalarea:view')
     form_class = VacancyEditForm
     title = 'Создать вакансию'
     template_name = 'vacancy/vacancy_form.html'
@@ -23,7 +24,7 @@ class VacancyCreateView(CreateView):
 
 class VacancyUpdateView(UpdateView):
     model = Vacancy
-    success_url = reverse_lazy('vacancy:vacancy_list')
+    success_url = reverse_lazy('personalarea:view')
     form_class = VacancyEditForm
     title = 'Редактировать вакансию'
     template_name = 'vacancy/vacancy_form.html'
@@ -31,6 +32,6 @@ class VacancyUpdateView(UpdateView):
 
 class VacancyDeleteView(DeleteView):
     model = Vacancy
-    success_url = reverse_lazy('vacancy:vacancy_list')
+    success_url = reverse_lazy('personalarea:view')
     title = 'Удалить вакансию'
     template_name = 'vacancy/vacancy_confirm_delete.html'
