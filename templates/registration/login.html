@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="card mx-auto" style="width:18rem;" id="loginForm">
+        <!-- <img src="" class="card-img-top" alt="..."> -->
+        <div class="card-body align-items-center align-content-center">
+            <h5 class="card-title">Авторизация</h5>
+            <!-- <h6 class="card-subtitle mb-2 text-muted ">Card subtitle</h6> -->
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <!-- {{ form.username }}
+                {{ form.password }} -->
+                <div class="d-grid">
+                    <button class="btn btn-primary d-block"
+                            type="submit" role="button">Войти
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

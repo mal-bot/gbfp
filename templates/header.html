@@ -1,0 +1,23 @@
+<div id="header">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+        <div class="container-fluid">
+            <div id="logo" class="text-center align-middle">
+                <span class="align-middle fw-bold text-light">GB</span>
+                <!-- <a class="navbar-brand text-center p-0 fs-3"  href="#">GB</a> -->
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarId"
+                    aria-controls="navbarId" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarId">
+                <div class="navbar-nav flex-row flex-wrap flex-grow">
+                    <a class="nav-link active" aria-current="page" href="#">Главная</a>
+                    <a class="nav-link " aria-current="page" href="#">Новости</a>
+                    <a class="nav-link " aria-current="page" href="#">Правила портала</a>
+                </div>
+            </div>
+            {#            <a class="btn btn-outline-secondary btn-sm" href="/auth/account/login/" role="button">Войти</a>#}
+            <a class="btn btn-outline-secondary btn-sm" href="{% url 'auth:login' %}" role="button">Войти</a>
+        </div>
+    </nav>
+</div>
