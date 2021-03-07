@@ -3,16 +3,17 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib import auth
 
-from authapp.forms import UserLoginForm
+from authapp.forms import UserLoginForm, ApplicantRegistrationForm, CompanyRegistrationForm
 
 
 def login(request):
+    print(request.user.username)
     title = 'вход'
 
     next = request.GET.get('next', '')
 
-    login_form = UserLoginForm(data=request.POST)
-    if request.method == 'POST' and login_form.is_valid():
+    form = UserLoginForm(data=request.POST)
+    if request.method == 'POST' and form.is_valid():
         username = request.POST['username']
         password = request.POST['password']
 
@@ -23,9 +24,9 @@ def login(request):
                 return HttpResponseRedirect(request.POST['next'])
             return HttpResponseRedirect(reverse('main:home'))
     else:
-        login_form = UserLoginForm()
+        form = UserLoginForm()
 
-    content = {'title': title, 'login_form': login_form,
+    content = {'title': title, 'form': form,
                'next': next}
     return render(request, 'registration/login.html', content)
 
@@ -34,4 +35,32 @@ def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('main:home'))
 
-# Create your views here.
+
+def register(request, reg_type='applicant'):
+    title = 'Регистрация соискателя' if reg_type == 'applicant' else 'Регистрация работодателя'
+
+    if reg_type == 'company':
+        form = CompanyRegistrationForm(data=request.POST)
+    else:
+        form = ApplicantRegistrationForm(data=request.POST)
+    if request.method == 'POST':
+        print('errors: ')
+        print(form.errors)
+        print(request.POST)
+        print(form.is_valid())
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('auth:login'))
+    else:
+        if reg_type == 'company':
+            form = CompanyRegistrationForm()
+        else:
+            form = ApplicantRegistrationForm()
+
+    content = {
+        'title': title,
+        'form': form,
+        'reg_type': reg_type
+    }
+    return render(request, 'registration/register.html', content)

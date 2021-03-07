@@ -3,7 +3,10 @@ from django.db import models
 
 
 class User(AbstractUser):
-    pass
+    description = models.TextField("Описание", null=True, blank=True)
+    age = models.IntegerField("Возраст", null=True, blank=True)
+    about = models.TextField("О себе", null=True, blank=True)
+
 # Create your models here.
 # class Company(models.Model):
 #     user = models.OneToOneField

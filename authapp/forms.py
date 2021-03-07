@@ -15,8 +15,25 @@ class UserLoginForm(AuthenticationForm):
 
 
 class ApplicantRegistrationForm(UserCreationForm):
-    pass
+    class Meta:
+        model = User
+        fields = ('username', 'password1', 'password2')
+        # fields = ('username', 'password1', 'password2', 'email', 'about', 'age')
+
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__()
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            field.help_text = None
 
 
 class CompanyRegistrationForm(UserCreationForm):
-    pass
+    class Meta:
+        model = User
+        fields = ('username', 'password1', 'password2', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__()
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            field.help_text = None

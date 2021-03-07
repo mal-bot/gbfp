@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="card mx-auto" style="width:18rem;" id="loginForm">
+        <!-- <img src="" class="card-img-top" alt="..."> -->
+        <div class="card-body align-items-center align-content-center">
+            <h5 class="card-title">Регистрация</h5>
+
+            <form enctype="multipart/form-data" class="form-horizontal"
+                  action="{% url 'auth:register' reg_type %}"
+                  method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ form.errors }}
+                <br>
+                <input class="form-control" type="submit" value="Регистрация">
+            </form>
+        </div>
+    </div>
+{% endblock %}
