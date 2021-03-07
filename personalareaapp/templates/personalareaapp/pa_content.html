@@ -1,0 +1,96 @@
+{% extends 'personalareaapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {#  ----------  Часть общая #}
+
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Мои избранные</h6>
+        {% for item in pa_favourites %}
+            <div class="d-flex text-muted pt-3">
+                <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                    <div>{{ item }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {#  ----------  Часть работодателя #}
+    {#  ----------  Когда будет authapp, надо отделить #}
+
+
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Мои вакансии</h6>
+
+        {% if not pa_vacancies %}
+            <p class="lead">Пока нет вакансий</p>
+
+        {% else %}
+            {% for item in pa_vacancies %}
+                <div class="d-flex text-muted pt-3">
+                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                        <div>{{ item }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <a class="btn btn-outline-secondary" href="#">Создать</a>
+    </div>
+
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Мои отклики</h6>
+
+        {% if not pa_responces %}
+            <p class="lead">Пока нет откликов</p>
+
+        {% else %}
+            {% for item in pa_responces %}
+                <div class="d-flex text-muted pt-3">
+                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                        <div>{{ item }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    {#  ----------  Часть соискателя #}
+
+{#        <div class="my-3 p-3 bg-body rounded shadow-sm">#}
+{#        <h6 class="border-bottom pb-2 mb-0">Мои резюме</h6>#}
+{##}
+{#        {% if not pa_vacancies %}#}
+{#            <p class="lead">Пока нет резюме</p>#}
+{##}
+{#        {% else %}#}
+{#            {% for item in pa_cv %}#}
+{#                <div class="d-flex text-muted pt-3">#}
+{#                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">#}
+{#                        <div>{{ item }}</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#        <a class="btn btn-outline-secondary" href="#">Создать</a>#}
+{#    </div>#}
+{##}
+{#      <div class="my-3 p-3 bg-body rounded shadow-sm">#}
+{#        <h6 class="border-bottom pb-2 mb-0">Мои предложения</h6>#}
+{##}
+{#        {% if not pa_responces %}#}
+{#            <p class="lead">Пока нет предложений</p>#}
+{##}
+{#        {% else %}#}
+{#            {% for item in pa_proposal %}#}
+{#                <div class="d-flex text-muted pt-3">#}
+{#                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">#}
+{#                        <div>{{ item }}</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#    </div>#}
+
+
+{% endblock %}

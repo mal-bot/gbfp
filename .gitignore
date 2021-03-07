@@ -2,3 +2,8 @@
 .idea
 .secret
 /venv/*
+/env/
+/.secret
+gbfp/__pycache__/
+personalareaapp/__pycache__/
+personalareaapp/migrations/__pycache__/

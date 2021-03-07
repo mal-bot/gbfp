@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import os
 
 
-with open(os.path.join(os.getcwd(), '../.secret')) as secret:
+with open(os.path.join(os.getcwd(), '.secret')) as secret:
     SECRET_KEY = secret.read()
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'personalareaapp',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = ''
+
+STATICFILES_DIRS = ( os.path.join('static'), )
