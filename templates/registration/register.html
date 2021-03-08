@@ -13,7 +13,6 @@
                   method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                {{ form.errors }}
                 <br>
                 <input class="form-control" type="submit" value="Регистрация">
             </form>

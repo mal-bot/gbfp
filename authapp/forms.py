@@ -9,7 +9,7 @@ class UserLoginForm(AuthenticationForm):
         fields = ('username', 'password')
 
     def __init__(self, *args, **kwargs):
-        super(UserLoginForm, self).__init__()
+        super(UserLoginForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
@@ -21,7 +21,7 @@ class ApplicantRegistrationForm(UserCreationForm):
         # fields = ('username', 'password1', 'password2', 'email', 'about', 'age')
 
     def __init__(self, *args, **kwargs):
-        super(UserCreationForm, self).__init__()
+        super(UserCreationForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = None
@@ -33,7 +33,7 @@ class CompanyRegistrationForm(UserCreationForm):
         fields = ('username', 'password1', 'password2', 'email')
 
     def __init__(self, *args, **kwargs):
-        super(UserCreationForm, self).__init__()
+        super(UserCreationForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = None
