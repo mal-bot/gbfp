@@ -1,6 +1,7 @@
 # *.sqlite3
 .idea
 .secret
+db.sqlite3
 /venv/*
 /env/
 /.secret
