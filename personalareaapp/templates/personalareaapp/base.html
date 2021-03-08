@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+            {{ title }}
+        {% endblock %}
+    </title>
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.css' %}">
+    {% endblock %}
+    {% block js %}
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+    {% endblock %}
+</head>
+<body>
+
+
+<div id="page">
+    <div class="wrapper" id="header">
+        <div class="container">
+            <div class="header__logo"></div>
+            {% block menu %}
+                {#                {% include 'gbfp/include/inc_main_menu.html' %}#}
+            {% endblock %}
+        </div>
+    </div>
+
+    <div class="wrapper" id="page-title">
+        <div class="container">
+{#                        <div class="d-flex align-items-center p-3 my-3 bg-purple rounded shadow-sm">#}
+{#                            <div class="lh-1 d-flex justify-content-between">#}
+{#                                <h1 class="h6 mb-0 lh-1">Личный кабинет пользователя {{ user.name|title }}</h1>#}
+{#                                <a class="btn btn-outline-secondary" href="#">Редактировать данные</a>#}
+{#                            </div>#}
+{#                        </div>#}
+            <div class="pt-2 pb-3 mb-0 small lh-sm border-bottom w-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <strong class="text-gray-dark">Личный кабинет пользователя {{ user.name|title }}</strong>
+                    <a class="mt-2 btn btn-outline-secondary" href="#">Редактировать данные</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper section">
+    <div id="personal_area" class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+{#    {% include 'gbfp/include/inc_footer.html' %}#}
+</div>
+</body>
+</html>

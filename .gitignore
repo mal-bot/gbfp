@@ -3,3 +3,11 @@
 .secret
 db.sqlite3
 /venv/*
+/env/
+/.secret
+gbfp/__pycache__/
+personalareaapp/__pycache__/
+personalareaapp/migrations/__pycache__/
+Vacancy/__pycache__/
+Vacancy/migrations/__pycache__/
+db.sqlite3

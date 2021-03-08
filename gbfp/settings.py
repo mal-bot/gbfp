@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
 
-with open(os.path.join(os.getcwd(), '../.secret')) as secret:
+with open(os.path.join(os.getcwd(), '.secret')) as secret:
     SECRET_KEY = secret.read()
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authapp',
     'mainapp',
+    'personalareaapp',
+    'Vacancy'
 ]
 
 MIDDLEWARE = [
@@ -122,6 +125,8 @@ LOGIN_URL = '/auth/login/'
 LOGIN_ERROR_URL = '/'
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = (
     'static',
 )
+
