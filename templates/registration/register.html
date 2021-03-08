@@ -14,7 +14,9 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <br>
-                <input class="form-control" type="submit" value="Регистрация">
+                <div class="d-grid">
+                    <input class="btn btn-secondary" type="submit" value="Регистрация">
+                </div>
             </form>
         </div>
     </div>

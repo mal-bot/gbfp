@@ -45,9 +45,10 @@ def register(request, reg_type='applicant'):
         form = ApplicantRegistrationForm(data=request.POST)
     if request.method == 'POST':
         if form.is_valid():
-            # todo: перед сохранением добавлять нужную группу
-            #  пользователю в зависимости от reg_type (создать группы)
-            form.save()
+            user = form.save()
+            if reg_type == 'company':
+                user.is_staff = True
+                user.save()
             return HttpResponseRedirect(reverse('auth:login'))
     else:
         if reg_type == 'company':

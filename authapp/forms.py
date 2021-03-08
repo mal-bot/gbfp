@@ -17,7 +17,7 @@ class UserLoginForm(AuthenticationForm):
 class ApplicantRegistrationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2')
+        fields = ('username', 'password1', 'password2', 'email', 'about')
         # fields = ('username', 'password1', 'password2', 'email', 'about', 'age')
 
     def __init__(self, *args, **kwargs):
@@ -30,7 +30,7 @@ class ApplicantRegistrationForm(UserCreationForm):
 class CompanyRegistrationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', 'email')
+        fields = ('username', 'password1', 'password2', 'email', 'description')
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
