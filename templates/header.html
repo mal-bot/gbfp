@@ -33,7 +33,8 @@
                         {% if user.is_staff %}
                             <li><a class="dropdown-item" href="{% url 'lk:view' %}">Личный кабинет</a></li>
                         {% else %}
-                            <li><a class="dropdown-item" href="{#% url 'lk:view' %#}">Личный кабинет</a></li>
+                            {# Лк соискателя #}
+                            <li><a class="dropdown-item" href="{% url 'lk:view' %}">Личный кабинет</a></li>
                         {% endif %}
                         <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Выход</a></li>
                         {#                        <li><a class="dropdown-item" href="#">Something else here</a></li>#}
