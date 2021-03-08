@@ -44,12 +44,9 @@ def register(request, reg_type='applicant'):
     else:
         form = ApplicantRegistrationForm(data=request.POST)
     if request.method == 'POST':
-        print('errors: ')
-        print(form.errors)
-        print(request.POST)
-        print(form.is_valid())
-
         if form.is_valid():
+            # todo: перед сохранением добавлять нужную группу
+            #  пользователю в зависимости от reg_type (создать группы)
             form.save()
             return HttpResponseRedirect(reverse('auth:login'))
     else:
