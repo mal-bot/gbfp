@@ -30,7 +30,7 @@ class ApplicantRegistrationForm(UserCreationForm):
 class CompanyRegistrationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', 'email', 'description')
+        fields = ('username', 'company_name', 'password1', 'password2', 'email', 'description')
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)

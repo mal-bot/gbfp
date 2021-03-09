@@ -11,3 +11,4 @@ personalareaapp/migrations/__pycache__/
 Vacancy/__pycache__/
 Vacancy/migrations/__pycache__/
 db.sqlite3
+*.pyc
