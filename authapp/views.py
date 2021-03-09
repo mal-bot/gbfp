@@ -2,7 +2,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib import auth
-
 from authapp.forms import UserLoginForm, ApplicantRegistrationForm, CompanyRegistrationForm
 
 

@@ -1,11 +1,12 @@
 from django.db import models
+from authapp.models import User
 
 
 class Vacancy(models.Model):
     name = models.CharField(verbose_name='название', max_length=250, blank=True, null=True)
     description = models.CharField(verbose_name='описание', max_length=250, blank=True, null=True)
 
-    # company = models.ForeignKey(Company, verbose_name='Компания', blank=True, null=True, on_delete=models.SET_NULL)
+    company = models.ForeignKey(User, verbose_name='Компания', blank=True, null=True, on_delete=models.SET_NULL)
 
     draft = models.BooleanField(verbose_name='черновик', default=False)
 
