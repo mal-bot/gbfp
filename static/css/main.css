@@ -1,0 +1,11 @@
+#logo {
+    background-color: red;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+#logo > span {
+    line-height: 2.5;
+}
+
