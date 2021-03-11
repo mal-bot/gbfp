@@ -25,4 +25,5 @@ urlpatterns = [
     path('vacancy/', include('Vacancy.urls', namespace='vacancy')),
     path('rules/', TemplateView.as_view(template_name='rules.html'), name='rules'),
     path('', TemplateView.as_view(template_name='main.html'), name='main'),
+    path('resume/', include('resume.urls', namespace='resume')),
     ]
