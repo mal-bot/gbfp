@@ -6,7 +6,7 @@ class Resume(models.Model):
         user = models.ForeignKey(User, on_delete=models.CASCADE)
         # name должно быть видно только соискателю
         name = models.CharField(verbose_name='название', max_length=250, blank=True, null=True)
-        cellphone = models.BigIntegerField(verbose_name='номер телефона')
+        cellphone = models.PositiveBigIntegerField(verbose_name='номер телефона')
         comment = models.CharField(verbose_name='описание', max_length=250, blank=True, null=True)
         hide_comment = models.BooleanField(verbose_name='Комментарий к резюме виден только Вам', default=True)
         is_draft = models.BooleanField(verbose_name='черновик', default=False)

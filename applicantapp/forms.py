@@ -1,16 +1,16 @@
 from django import forms
+
+from authapp.models import User
 from django.forms.fields import BooleanField
 
-from resume.models import Resume
 
-
-class ResumeEditForm(forms.ModelForm):
+class ApplicantEditForm(forms.ModelForm):
     class Meta:
-        model = Resume
-        exclude = ('is_active', 'user',)
+        model = User
+        fields = ('username', 'email', 'about')
 
     def __init__(self, *args, **kwargs):
-        super(ResumeEditForm, self).__init__(*args, **kwargs)
+        super(ApplicantEditForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             if type(field) != BooleanField:
                 field.widget.attrs['class'] = 'form-control'
