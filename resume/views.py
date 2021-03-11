@@ -24,7 +24,7 @@ class ResumeListView(ListView):
 
 class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Resume
-    success_url = reverse_lazy('resume:resume_list')
+    success_url = reverse_lazy('applicant:view')
     form_class = ResumeEditForm
     title = 'Создать резюме'
     template_name = 'resume/resume_form.html'
@@ -43,7 +43,7 @@ class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Resume
-    success_url = reverse_lazy('resume:resume_list')
+    success_url = reverse_lazy('applicant:view')
     form_class = ResumeEditForm
     title = 'Редактировать резюме'
     template_name = 'resume/resume_form.html'
@@ -64,7 +64,7 @@ class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Resume
-    success_url = reverse_lazy('resume:resume_list')
+    success_url = reverse_lazy('applicant:view')
     title = 'Удалить резюме'
     template_name = 'resume/resume_confirm_delete.html'
 
