@@ -26,13 +26,7 @@ class Resume(models.Model):
             pass
 
         total_exp = property(_calc_experience)
-
-        @property
-        def _get_user_email(self):
-            return self.user.email
-
-        email = _get_user_email
-
+        
         class Meta:
             ordering = ('name',)
             verbose_name = 'резюме'
