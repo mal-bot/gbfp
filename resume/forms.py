@@ -7,7 +7,7 @@ from resume.models import Resume
 class ResumeEditForm(forms.ModelForm):
     class Meta:
         model = Resume
-        exclude = ('is_active',)
+        exclude = ('is_active', 'user',)
 
     def __init__(self, *args, **kwargs):
         super(ResumeEditForm, self).__init__(*args, **kwargs)
