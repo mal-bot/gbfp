@@ -11,6 +11,7 @@
     {% block css %}
         <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+        <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
     {% endblock %}
     {% block js %}
         <script src="{% static 'js/bootstrap.js' %}"></script>
@@ -42,7 +43,8 @@
                 <div class="d-flex justify-content-between align-items-center">
                     {% if request.resolver_match.url_name == 'view' %}
                         <strong class="text-gray-dark">Личный кабинет пользователя {{ request.user|title }}</strong>
-                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'personalarea:company_update' request.user.pk %}">
+                        <a class="mt-2 btn btn-outline-secondary"
+                           href="{% url 'personalarea:company_update' request.user.pk %}">
                             Редактировать профиль
                         </a>
                     {% elif request.resolver_match.url_name == 'vacancy_update' %}
