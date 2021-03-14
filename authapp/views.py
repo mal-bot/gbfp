@@ -21,7 +21,7 @@ def login(request):
             auth.login(request, user)
             if 'next' in request.POST.keys():
                 return HttpResponseRedirect(request.POST['next'])
-            return HttpResponseRedirect(reverse('main'))
+            return HttpResponseRedirect(reverse('main:main_list'))
     else:
         form = UserLoginForm()
 
@@ -32,7 +32,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('main'))
+    return HttpResponseRedirect(reverse('main:main_list'))
 
 
 def register(request, reg_type='applicant'):
@@ -54,6 +54,7 @@ def register(request, reg_type='applicant'):
             form = CompanyRegistrationForm()
         else:
             form = ApplicantRegistrationForm()
+
 
     content = {
         'title': title,

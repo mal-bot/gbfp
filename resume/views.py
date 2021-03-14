@@ -38,7 +38,7 @@ class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return not self.request.user.is_staff
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main'))
+        return HttpResponseRedirect(reverse('main:main_list'))
 
 
 class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -59,7 +59,7 @@ class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return result
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main'))
+        return HttpResponseRedirect(reverse('main:main_list'))
 
 
 class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -74,4 +74,4 @@ class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return result
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main'))
+        return HttpResponseRedirect(reverse('main:main_list'))
