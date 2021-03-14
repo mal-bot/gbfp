@@ -9,7 +9,11 @@
             <h5 class="card-title">Регистрация</h5>
 
             <form enctype="multipart/form-data" class="form-horizontal"
-                  action="{% url 'auth:register' reg_type %}"
+                    {% if reg_type == 'applicant' %}
+                  action="{% url 'auth:register_applicant' %}"
+                    {% else %}
+                  action="{% url 'auth:register_company' %}"
+                    {% endif %}
                   method="post">
                 {% csrf_token %}
                 {{ form.as_p }}

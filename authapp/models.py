@@ -8,6 +8,7 @@ class User(AbstractUser):
     about = models.TextField("О себе", null=True, blank=True)
     company_name = models.CharField("Название компании", max_length=150)
     main_business = models.CharField("Род деятельности", max_length=150)
+    # test = models.TextField("test", null=True, blank=True)
 
 # Create your models here.
 # class Company(models.Model):

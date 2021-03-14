@@ -7,9 +7,14 @@ app_name = 'auth'
 
 urlpatterns = [
     # path('accounts/', include('django.contrib.auth.urls')),
-    path('login/', authapp.login, name='login'),
+    # path('login/', authapp.login, name='login'),
+    path('login/', authapp.Login.as_view(extra_context={'title': 'Авторизация'}), name='login'),
     path('logout/', authapp.logout, name='logout'),
-    # path('register/<str:reg_type>/', authapp.register, name='register'),
-    url(r'^register/(?P<reg_type>\w{0,50})/$', authapp.register, name='register'),
+    path('register/applicant',
+         authapp.ApplicantRegistration.as_view(extra_context={'title': 'Регистрация', 'reg_type': 'applicant'}),
+         name='register_applicant'),
+    path('register/company',
+         authapp.CompanyRegistration.as_view(extra_context={'title': 'Регистрация', 'reg_type': 'company'}),
+         name='register_company'),
 
 ]
