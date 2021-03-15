@@ -17,4 +17,4 @@ def main_list(request):
     context = {
         'title': title,
         'data': data}
-    return render(request, 'main.html', context)
+    return render(request, 'mainapp/main.html', context)

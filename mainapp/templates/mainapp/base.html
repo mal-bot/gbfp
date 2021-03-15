@@ -13,7 +13,7 @@
 <body>
 
 {% block header %}
-    {% include 'header.html' %}
+    {% include 'mainapp/header.html' %}
 {% endblock %}
 
 <div id="main" class="mx-5">
@@ -21,8 +21,11 @@
     {% endblock %}
 </div>
 
+
 {% block footer %}
+    {% include 'mainapp/footer.html' %}
 {% endblock %}
+
 
 </body>
 </html>
