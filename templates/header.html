@@ -36,7 +36,7 @@
                                 <li><a class="dropdown-item" href="{% url 'lk:view' %}">Личный кабинет</a></li>
                             {% else %}
                                 {# Лк соискателя #}
-                                <li><a class="dropdown-item" href="{% url 'lk:view' %}">Личный кабинет</a></li>
+                                <li><a class="dropdown-item" href="{% url 'applicant:view' %}">Личный кабинет</a></li>
                             {% endif %}
                             <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Выход</a></li>
                             {#                        <li><a class="dropdown-item" href="#">Something else here</a></li>#}
