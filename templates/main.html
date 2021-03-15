@@ -2,6 +2,34 @@
 {% load static %}
 
 {% block content %}
+    {% if user.is_authenticated %}
+    <h3>{{ title }}</h3>
+          <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%"
+                      cellspacing="0">
+               <thead>
+                   <tr>
+                       <th>#</th>
+                       <th>Название</th>
+
+                   </tr>
+               </thead>
+               <tbody>
+                   {% for obj in data %}
+                       <tr>
+                           <td>{{ obj.id }}</td>
+                           <td><a href="#"> {{ obj.name }} </a> </td>
+
+                       </tr>
+                   {% endfor %}
+               </tbody>
+               </table>
+    {% endif %}
+
+<br>
+<br>
+<br>
+
+
     <div class="card m-2 shadow-sm" style="">
         <!-- <img src="" class="card-img-top" alt="..."> -->
         <div class="card-body">
@@ -25,5 +53,5 @@
         </div>
     </div>
 
-    </div>
+
 {% endblock %}

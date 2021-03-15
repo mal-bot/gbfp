@@ -16,13 +16,14 @@ class Login(LoginView):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('main'))
+    return HttpResponseRedirect(reverse('main:main_list'))
 
 
 class ApplicantRegistration(CreateView):
     form_class = ApplicantRegistrationForm
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('main:main_list')
     template_name = 'registration/register.html'
+
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -32,8 +33,9 @@ class ApplicantRegistration(CreateView):
 
 class CompanyRegistration(CreateView):
     form_class = CompanyRegistrationForm
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('main:main_list')
     template_name = 'registration/register.html'
+
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -67,3 +69,4 @@ class CompanyRegistration(CreateView):
 #         'reg_type': reg_type
 #     }
 #     return render(request, 'registration/register.html', content)
+

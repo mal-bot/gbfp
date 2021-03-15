@@ -11,10 +11,10 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarId">
                 <div class="navbar-nav flex-row flex-wrap flex-grow">
-                    {#                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page"#}
+                    {#                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" #}
                     {#                       href="{% url 'main' %}">Главная</a>#}
                     <a class="nav-link {% if request.path == '/news/' or request.path == '/' %}active{% endif %}"
-                       aria-current="page" href="{% url 'main' %}">Новости</a>
+                       aria-current="page" href="{% url 'main:main_list' %}">Новости</a>
                     <a class="nav-link {% if request.path == '/rules/' %}active{% endif %}" aria-current="page"
                        href="{% url 'rules' %}">Правила портала</a>
                 </div>
@@ -42,6 +42,19 @@
                             {#                        <li><a class="dropdown-item" href="#">Something else here</a></li>#}
                         </ul>
                     </div>
+
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {# Лк работодателя #}
+                        {% if user.is_staff %}
+                            <li><a class="dropdown-item" href="{% url 'lk:view' %}">Личный кабинет</a></li>
+                        {% else %}
+                            {# Лк соискателя #}
+                            <li><a class="dropdown-item" href="{% url 'applicant:view' %}">Личный кабинет</a></li>
+                        {% endif %}
+                        <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Выход</a></li>
+                        {#                        <li><a class="dropdown-item" href="#">Something else here</a></li>#}
+                    </ul>
 
                 </div>
             {% else %}

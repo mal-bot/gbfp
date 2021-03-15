@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'authapp',
     'mainapp',
     'personalareaapp',
-    'Vacancy'
+    'Vacancy',
+    'resume',
+    'applicantapp',
 ]
 
 MIDDLEWARE = [
