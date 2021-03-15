@@ -13,6 +13,17 @@
                 {% csrf_token %}
                 {{ form.as_p }}
 
+                {#                {% if form.errors %}#}
+                {#                    {% for field in form %}#}
+                {#                        {% for error in field.errors %}#}
+                {#                            <p> {{ error }} </p>#}
+                {#                        {% endfor %}#}
+                {#                    {% endfor %}#}
+                {#                {% endif %}#}
+                {#                {% for field in form %}#}
+                {#                    {{ field.errors }}#}
+                {#                {% endfor %}#}
+
                 <div class="d-grid">
                     <button class="btn btn-primary d-block"
                             type="submit" role="button">Войти
@@ -21,9 +32,9 @@
             </form>
             <span>Регистрация</span><br>
             <div class="d-grid gap-2">
-                <a class="btn btn-outline-secondary btn-sm " href="{% url 'auth:register' 'applicant' %}"
+                <a class="btn btn-outline-secondary btn-sm " href="{% url 'auth:register_applicant' %}"
                    role="button">Соискателя</a>
-                <a class="btn btn-outline-secondary btn-sm " href="{% url 'auth:register' 'company' %}"
+                <a class="btn btn-outline-secondary btn-sm " href="{% url 'auth:register_company' %}"
                    role="button">Работодателя</a>
             </div>
 
