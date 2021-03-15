@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'authapp',
     'mainapp',
     'personalareaapp',
-    'Vacancy'
+    'Vacancy',
+    'resume',
+    'applicantapp',
 ]
 
 MIDDLEWARE = [
@@ -124,10 +126,10 @@ AUTH_USER_MODEL = 'authapp.User'
 LOGIN_URL = '/auth/login/'
 
 LOGIN_ERROR_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     'static',
 )
-

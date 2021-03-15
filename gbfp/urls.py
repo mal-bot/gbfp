@@ -22,7 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('lk/', include('personalareaapp.urls', namespace='lk')),
+    path('applicant/', include('applicantapp.urls', namespace='applicant')),
     path('vacancy/', include('Vacancy.urls', namespace='vacancy')),
     path('rules/', TemplateView.as_view(template_name='rules.html'), name='rules'),
-    path('', TemplateView.as_view(template_name='main.html'), name='main'),
+    path('', include('mainapp.urls', namespace='main')),
+    path('resume/', include('resume.urls', namespace='resume')),
     ]

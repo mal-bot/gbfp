@@ -11,7 +11,6 @@
     {% block css %}
         <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
-        <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
     {% endblock %}
     {% block js %}
         <script src="{% static 'js/bootstrap.js' %}"></script>
@@ -29,32 +28,27 @@
                 {#                {% include 'gbfp/include/inc_main_menu.html' %}#}
             {% endblock %}
         </div>
+
     </div>
 
     <div class="wrapper" id="page-title">
         <div class="container">
-            {#                        <div class="d-flex align-items-center p-3 my-3 bg-purple rounded shadow-sm">#}
-            {#                            <div class="lh-1 d-flex justify-content-between">#}
-            {#                                <h1 class="h6 mb-0 lh-1">Личный кабинет пользователя {{ user.name.username|title }}</h1>#}
-            {#                                <a class="btn btn-outline-secondary" href="#">Редактировать данные</a>#}
-            {#                            </div>#}
-            {#                        </div>#}
             <div class="pt-2 pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between align-items-center">
                     {% if request.resolver_match.url_name == 'view' %}
-                        <strong class="text-gray-dark">Личный кабинет пользователя {{ request.user|title }}</strong>
-                        <a class="mt-2 btn btn-outline-secondary"
-                           href="{% url 'personalarea:company_update' request.user.pk %}">
+                        <strong class="text-gray-dark">Личный кабинет соискателя {{ request.user|title }}</strong>
+                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'applicant:applicant_update' request.user.pk %}">
                             Редактировать профиль
                         </a>
-                    {% elif request.resolver_match.url_name == 'vacancy_update' %}
-                        <strong class="text-gray-dark">Редактирование вакансии {{ form.name.value }}</strong>
-                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'personalarea:view' %}">
+                    {% elif request.resolver_match.url_name == 'resume_update' %}
+
+                        <strong class="text-gray-dark">Редактирование резюме {{ form.name.value }}</strong>
+                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'applicant:view' %}">
                             Вернуться в личный кабинет
                         </a>
-                    {% elif request.resolver_match.url_name == 'company_update' %}
+                    {% elif request.resolver_match.url_name == 'applicant_update' %}
                         <strong class="text-gray-dark">Редактирование профиля {{ request.user.username }}</strong>
-                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'personalarea:view' %}">
+                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'applicant:view' %}">
                             Вернуться в личный кабинет
                         </a>
                     {% endif %}
