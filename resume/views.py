@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from resume.forms import ResumeEditForm
 from resume.models import Resume
@@ -75,3 +75,9 @@ class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def handle_no_permission(self):
         return HttpResponseRedirect(reverse('main:main_list'))
+
+
+class ResumeDetailView(DetailView):
+    model = Resume
+    title = 'Вакансия'
+    template_name = 'resume/resume_detail.html'
