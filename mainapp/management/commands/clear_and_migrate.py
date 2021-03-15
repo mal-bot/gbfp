@@ -1,6 +1,5 @@
 from django.core.management import BaseCommand
 import os
-# import subprocess
 
 
 class Command(BaseCommand):
@@ -14,7 +13,6 @@ class Command(BaseCommand):
             print(f'Миграции для {app} очищены.')
             self.remove_files(path)
 
-        # self.remove_files(os.path.join(current_path, 'Documents_folder\\docs'))
         db_path = os.path.join(current_path, 'db.sqlite3')
         if os.path.exists(db_path):
             os.remove(db_path)
