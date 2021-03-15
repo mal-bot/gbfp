@@ -21,9 +21,8 @@ def logout(request):
 
 class ApplicantRegistration(CreateView):
     form_class = ApplicantRegistrationForm
-    success_url = reverse_lazy('main:main_list')
+    success_url = reverse_lazy('auth:login')
     template_name = 'registration/register.html'
-
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -33,9 +32,13 @@ class ApplicantRegistration(CreateView):
 
 class CompanyRegistration(CreateView):
     form_class = CompanyRegistrationForm
-    success_url = reverse_lazy('main:main_list')
+    success_url = reverse_lazy('auth:login')
     template_name = 'registration/register.html'
 
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.is_staff = True
+        return super(CompanyRegistration, self).form_valid(form)
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
