@@ -14,7 +14,7 @@
                     {#                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" #}
                     {#                       href="{% url 'main' %}">Главная</a>#}
                     <a class="nav-link {% if request.path == '/news/' or request.path == '/' %}active{% endif %}"
-                       aria-current="page" href="{% url 'main' %}">Новости</a>
+                       aria-current="page" href="{% url 'main:main_list' %}">Новости</a>
                     <a class="nav-link {% if request.path == '/rules/' %}active{% endif %}" aria-current="page"
                        href="{% url 'rules' %}">Правила портала</a>
                 </div>
