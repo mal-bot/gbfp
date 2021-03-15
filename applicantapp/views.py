@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from applicantapp.forms import ApplicantEditForm
 from authapp.models import User
-from resume.models import Resume
+from resumeapp.models import Resume
 
 
 class ResumeList(LoginRequiredMixin, UserPassesTestMixin, ListView):

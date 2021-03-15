@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from resume.forms import ResumeEditForm
-from resume.models import Resume
+from resumeapp.forms import ResumeEditForm
+from resumeapp.models import Resume
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
@@ -13,7 +13,7 @@ class ResumeListView(ListView):
     paginate_by = 10
     title = 'Резюме'
     ordering = '-is_active'
-    template_name = 'resume/resume_list.html'
+    template_name = 'resumeapp/resume_list.html'
 
     # def test_func(self):
     #     return self.request.user.is_staff
@@ -27,7 +27,7 @@ class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     success_url = reverse_lazy('applicant:view')
     form_class = ResumeEditForm
     title = 'Создать резюме'
-    template_name = 'resume/resume_form.html'
+    template_name = 'resumeapp/resume_form.html'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -46,7 +46,7 @@ class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     success_url = reverse_lazy('applicant:view')
     form_class = ResumeEditForm
     title = 'Редактировать резюме'
-    template_name = 'resume/resume_form.html'
+    template_name = 'resumeapp/resume_form.html'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -66,7 +66,7 @@ class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Resume
     success_url = reverse_lazy('applicant:view')
     title = 'Удалить резюме'
-    template_name = 'resume/resume_confirm_delete.html'
+    template_name = 'resumeapp/resume_confirm_delete.html'
 
     def test_func(self):
         obj = get_object_or_404(self.model, pk=self.kwargs['pk'])
@@ -80,4 +80,4 @@ class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class ResumeDetailView(DetailView):
     model = Resume
     title = 'Вакансия'
-    template_name = 'resume/resume_detail.html'
+    template_name = 'resumeapp/resume_detail.html'

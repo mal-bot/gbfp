@@ -6,7 +6,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         current_path = os.getcwd()
-        apps_to_clear_migrations = ['applicantapp', 'authapp', 'mainapp', 'personalareaapp', 'resume', 'Vacancy']
+        apps_to_clear_migrations = ['applicantapp', 'authapp', 'mainapp', 'companyapp', 'resumeapp', 'vacancyapp']
 
         for app in apps_to_clear_migrations:
             path = os.path.join(current_path, f'{app}\\migrations')

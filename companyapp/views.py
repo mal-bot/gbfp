@@ -2,9 +2,9 @@ from django.views.generic import ListView, UpdateView
 # from django.contrib.auth.decorators import login_required
 # from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from Vacancy.models import Vacancy
+from vacancyapp.models import Vacancy
 from authapp.models import User
-from personalareaapp.forms import UserEditForm
+from companyapp.forms import UserEditForm
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -12,10 +12,10 @@ from django.urls import reverse
 
 # @method_decorator(login_required(), name='dispatch')
 class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    template_name = 'personalareaapp/pa_content.html'
+    template_name = 'companyapp/pa_content.html'
     model = Vacancy
     context_object_name = 'vacancies_list'
-    # queryset = Vacancy.objects.filter()
+    # queryset = vacancyapp.objects.filter()
 
     # def get_context_data(self, **kwargs):
     #     context = super(IndexView, self).get_context_data(**kwargs)
@@ -36,10 +36,10 @@ class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
 # @method_decorator(login_required(), name='dispatch')
 class CompanyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
-    success_url = reverse_lazy('personalarea:view')
+    success_url = reverse_lazy('company:view')
     form_class = UserEditForm
     title = 'Редактировать данные профиля'
-    template_name = 'personalareaapp/company_form.html'
+    template_name = 'companyapp/company_form.html'
 
     def test_func(self):
         return self.request.user.pk == self.kwargs['pk']
