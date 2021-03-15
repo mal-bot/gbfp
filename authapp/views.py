@@ -10,7 +10,7 @@ from authapp.models import User
 
 
 class Login(LoginView):
-    template_name = 'registration/login.html'
+    template_name = 'authapp/login.html'
     form_class = UserLoginForm
 
 
@@ -22,7 +22,7 @@ def logout(request):
 class ApplicantRegistration(CreateView):
     form_class = ApplicantRegistrationForm
     success_url = reverse_lazy('auth:login')
-    template_name = 'registration/register.html'
+    template_name = 'authapp/register.html'
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -33,7 +33,7 @@ class ApplicantRegistration(CreateView):
 class CompanyRegistration(CreateView):
     form_class = CompanyRegistrationForm
     success_url = reverse_lazy('auth:login')
-    template_name = 'registration/register.html'
+    template_name = 'authapp/register.html'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
