@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from Vacancy.forms import VacancyEditForm
 from Vacancy.models import Vacancy
@@ -21,6 +21,12 @@ class VacancyListView(ListView):
 
     # def handle_no_permission(self):
     #     return HttpResponseRedirect(reverse('main:main_list'))
+
+
+class VacancyDetailView(DetailView):
+    model = Vacancy
+    title = 'Вакансия'
+    template_name = 'vacancy/vacancy_detail.html'
 
 
 class VacancyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -76,3 +82,4 @@ class VacancyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def handle_no_permission(self):
         return HttpResponseRedirect(reverse('main:main_list'))
+
