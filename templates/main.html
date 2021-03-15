@@ -17,8 +17,14 @@
                    {% for obj in data %}
                        <tr>
                            <td>{{ obj.id }}</td>
-                           <td><a href="#"> {{ obj.name }} </a> </td>
+                           <td>{% if title == 'Список вакансий' %}
+                               <a href="{% url 'vacancy:vacancy_detail' obj.pk %}"> {{ obj.name }} </a>
 
+                               {% else %}
+                               <a href="{% url 'resume:resume_detail' obj.pk %}"> {{ obj.name }} </a>
+
+                               {% endif %}
+                           </td>
                        </tr>
                    {% endfor %}
                </tbody>
