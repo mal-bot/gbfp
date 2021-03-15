@@ -42,9 +42,12 @@
                         <td>{{ vacancy.name }}</td>
                         <td>{{ vacancy.description }}</td>
                         <td>
-                            <a href="{% url 'vacancy:vacancy_update' vacancy.pk %}">Редактировать</a>
+                            <a href="{% url 'vacancy:vacancy_detail' vacancy.pk %}"
+                               class="text-muted"><i class="fas fa-eye"></i></a>
+                            <a href="{% url 'vacancy:vacancy_update' vacancy.pk %}"
+                               class="text-muted ms-2"><i class="fas fa-pencil-alt"></i></a>
                             <a href="{% url 'vacancy:vacancy_delete' vacancy.pk %}"
-                               class="text-muted">Удалить</a>
+                               class="text-muted ms-2"><i class="fas fa-times"></i></a>
                         </td>
                     </tr>
                 {% endfor %}
