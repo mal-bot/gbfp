@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from Vacancy.forms import VacancyEditForm
-from Vacancy.models import Vacancy
+from vacancyapp.forms import VacancyEditForm
+from vacancyapp.models import Vacancy
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
@@ -13,8 +13,8 @@ class VacancyListView(ListView):
     paginate_by = 10
     title = 'Вакансии'
     ordering = '-is_active'
-    # template_name = 'vacancy/vacancy_list.html'
-    template_name = 'personalareaapp/pa_content.html'
+    # template_name = 'vacancyapp/vacancy_list.html'
+    template_name = 'companyapp/pa_content.html'
 
     # def test_func(self):
     #     return self.request.user.is_staff
@@ -26,15 +26,15 @@ class VacancyListView(ListView):
 class VacancyDetailView(DetailView):
     model = Vacancy
     title = 'Вакансия'
-    template_name = 'vacancy/vacancy_detail.html'
+    template_name = 'vacancyapp/vacancy_detail.html'
 
 
 class VacancyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Vacancy
-    success_url = reverse_lazy('personalarea:view')
+    success_url = reverse_lazy('company:view')
     form_class = VacancyEditForm
     title = 'Создать вакансию'
-    template_name = 'vacancy/vacancy_form.html'
+    template_name = 'vacancyapp/vacancy_form.html'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -50,10 +50,10 @@ class VacancyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class VacancyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Vacancy
-    success_url = reverse_lazy('personalarea:view')
+    success_url = reverse_lazy('company:view')
     form_class = VacancyEditForm
     title = 'Редактировать вакансию'
-    template_name = 'vacancy/vacancy_form.html'
+    template_name = 'vacancyapp/vacancy_form.html'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -71,9 +71,9 @@ class VacancyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class VacancyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Vacancy
-    success_url = reverse_lazy('personalarea:view')
+    success_url = reverse_lazy('company:view')
     title = 'Удалить вакансию'
-    template_name = 'vacancy/vacancy_confirm_delete.html'
+    template_name = 'vacancyapp/vacancy_confirm_delete.html'
 
     def test_func(self):
         obj = get_object_or_404(self.model, pk=self.kwargs['pk'])

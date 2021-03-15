@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.fields import BooleanField
 
-from resume.models import Resume
+from resumeapp.models import Resume
 
 
 class ResumeEditForm(forms.ModelForm):

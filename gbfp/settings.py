@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authapp',
     'mainapp',
-    'personalareaapp',
-    'Vacancy',
-    'resume',
+    'companyapp',
+    'vacancyapp',
+    'resumeapp',
     'applicantapp',
 ]
 

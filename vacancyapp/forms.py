@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.fields import BooleanField
 
-from Vacancy.models import Vacancy
+from vacancyapp.models import Vacancy
 
 
 class VacancyEditForm(forms.ModelForm):

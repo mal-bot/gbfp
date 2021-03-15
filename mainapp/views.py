@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 
-from Vacancy.models import Vacancy
-from resume.models import Resume
+from vacancyapp.models import Vacancy
+from resumeapp.models import Resume
 
 
 def main_list(request):
@@ -12,7 +12,7 @@ def main_list(request):
         title = 'Список резюме'
     else:
         data = Vacancy.objects.filter(draft=False)
-        # data = Vacancy.objects.all()
+        # data = vacancyapp.objects.all()
         title = 'Список вакансий'
     context = {
         'title': title,
