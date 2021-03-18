@@ -33,7 +33,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             {# Лк работодателя #}
                             {% if user.is_staff %}
-                                <li><a class="dropdown-item" href="{% url 'lk:view' %}">Личный кабинет</a></li>
+                                <li><a class="dropdown-item" href="{% url 'company:view' %}">Личный кабинет</a></li>
                             {% else %}
                                 {# Лк соискателя #}
                                 <li><a class="dropdown-item" href="{% url 'applicant:view' %}">Личный кабинет</a></li>
@@ -47,7 +47,7 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         {# Лк работодателя #}
                         {% if user.is_staff %}
-                            <li><a class="dropdown-item" href="{% url 'lk:view' %}">Личный кабинет</a></li>
+                            <li><a class="dropdown-item" href="{% url 'company:view' %}">Личный кабинет</a></li>
                         {% else %}
                             {# Лк соискателя #}
                             <li><a class="dropdown-item" href="{% url 'applicant:view' %}">Личный кабинет</a></li>

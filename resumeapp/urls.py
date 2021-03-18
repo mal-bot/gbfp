@@ -1,6 +1,6 @@
 from django.urls import path
 
-from resume import views
+from resumeapp import views
 
 app_name = 'resume'
 

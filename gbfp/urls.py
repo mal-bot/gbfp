@@ -21,10 +21,10 @@ from django.views.generic import DetailView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authapp.urls', namespace='auth')),
-    path('lk/', include('personalareaapp.urls', namespace='lk')),
+    path('company/', include('companyapp.urls', namespace='company')),
     path('applicant/', include('applicantapp.urls', namespace='applicant')),
-    path('vacancy/', include('Vacancy.urls', namespace='vacancy')),
-    path('rules/', TemplateView.as_view(template_name='rules.html'), name='rules'),
+    path('vacancy/', include('vacancyapp.urls', namespace='vacancy')),
+    path('rules/', TemplateView.as_view(template_name='mainapp/rules.html'), name='rules'),
     path('', include('mainapp.urls', namespace='main')),
-    path('resume/', include('resume.urls', namespace='resume')),
+    path('resumeapp/', include('resumeapp.urls', namespace='resumeapp')),
     ]

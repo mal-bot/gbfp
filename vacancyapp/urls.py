@@ -1,8 +1,8 @@
 from django.urls import path
 
-from Vacancy import views
+from vacancyapp import views
 
-app_name = 'Vacancy'
+app_name = 'vacancy'
 
 urlpatterns = [
     path('', views.VacancyListView.as_view(), name='vacancy_list'),
