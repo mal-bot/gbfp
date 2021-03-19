@@ -7,7 +7,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         current_path = os.getcwd()
-        apps_to_clear_migrations = ['applicantapp', 'authapp', 'mainapp', 'companyapp', 'resumeapp', 'vacancyapp']
+        apps_to_clear_migrations = ['applicantapp', 'authapp', 'companyapp', 'mainapp', 'resumeapp', 'vacancyapp']
 
         for app in apps_to_clear_migrations:
             path = os.path.join(current_path, f'{app}\\migrations')
@@ -18,6 +18,10 @@ class Command(BaseCommand):
             os.mkdir(f'{MEDIA_URL[1:-1]}')
             print(f'Папка {MEDIA_URL[1:-1]} создана')
 
+        if not os.path.isdir(f'{MEDIA_URL[1:-1]}\\avatars'):
+            os.mkdir(f'avatars')
+            print(f'Папка avatars создана')
+
         db_path = os.path.join(current_path, 'db.sqlite3')
         if os.path.exists(db_path):
             os.remove(db_path)
@@ -25,7 +29,6 @@ class Command(BaseCommand):
 
         print(os.popen('py manage.py makemigrations').read())
         print(os.popen('py manage.py migrate').read())
-        print(os.popen('py manage.py fill_db').read())
 
     def remove_files(self, path):
         for file in os.listdir(path):
