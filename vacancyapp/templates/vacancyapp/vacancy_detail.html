@@ -14,7 +14,7 @@
                 {# TODO привязать ссылку на детальную информацию о компании #}
                 <div class="form-button mt-4">
                     <button class="btn btn-success w-md waves-effect waves-light">
-                        <a href="#" class="text-decoration-none text-white">Откликнуться</a>
+                        <a href="{% url 'main:main_invite' object.pk %}" class="text-decoration-none text-white">Откликнуться</a>
                     </button>
                     <button class="btn btn-light w-md waves-effect waves-light border-secondary">
                         <a href="{% url 'main:main_list' %}" class="text-dark">Назад</a>

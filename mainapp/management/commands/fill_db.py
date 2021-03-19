@@ -2,11 +2,12 @@ from django.core.management import BaseCommand
 from authapp.models import User
 from resumeapp.models import Resume
 from vacancyapp.models import Vacancy
+from mainapp.models import Responses
 import datetime
 
 
 class Command(BaseCommand):
-    tables = [User, Resume, Vacancy]
+    tables = [User, Resume, Vacancy, Responses]
 
     # # sqlite
     def handle(self, *args, **options):

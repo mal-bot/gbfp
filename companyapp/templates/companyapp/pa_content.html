@@ -55,5 +55,34 @@
 
         <a class="btn btn-outline-secondary" href="{% url 'vacancy:vacancy_create' %}">Создать</a>
     </div>
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Мои предложения</h6>
+           {% if not responses_list %}
+            <p class="lead">Пока нет предложений</p>
+           {% else %}
+                <table class="table table-striped dt-responsive nowrap table-vertical" width="100%"
+                      cellspacing="0">
+               <thead>
+                   <tr>
+                       <th>#</th>
+                       <th>Резюме</th>
+                       <th>Соискатель</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   {% for item in responses_list %}
+                        {% if item.vacancy %}
+                            <tr>
+                               <td>{{ item.id }}</td>
+                               <td>{{ item.vacancy.vacancy_name }}</td>
+                               <td><a href="{% url 'applicant:applicant_detail' item.user.id %}" class="text-decoration-none">{{ item.user.first_name }}</a></td>
+                           </tr>
+                        {% endif %}
+                   {% endfor %}
+               </tbody>
+               </table>
+        {% endif %}
+        </div>
+
 
 {% endblock %}

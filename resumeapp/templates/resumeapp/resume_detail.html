@@ -29,7 +29,7 @@
                 <p> {{object.languages}}</p>
                 <div class="form-button mt-4">
                     <button class="btn btn-success w-md waves-effect waves-light">
-                        <a href="#" class="text-decoration-none text-white">Пригласить</a>
+                        <a href="{% url 'main:main_invite' object.pk %}" class="text-decoration-none text-white">Пригласить</a>
                     </button>
                     <button class="btn btn-light w-md waves-effect waves-light border-secondary">
                         <a href="{% url 'main:main_list' %}" class="text-dark">Назад</a>

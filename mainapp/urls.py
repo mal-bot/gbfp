@@ -5,4 +5,5 @@ app_name = 'main'
 
 urlpatterns = [
     path('', mainapp.main_list, name='main_list'),
+    path('invite/<int:pk>/', mainapp.invite, name='main_invite'),
 ]
