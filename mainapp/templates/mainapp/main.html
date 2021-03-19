@@ -18,10 +18,10 @@
                        <tr>
                            <td>{{ obj.id }}</td>
                            <td>{% if title == 'Список вакансий' %}
-                               <a href="{% url 'vacancy:vacancy_detail' obj.pk %}"> {{ obj.name }} </a>
+                               <a href="{% url 'vacancy:vacancy_detail' obj.pk %}"> {{ obj.vacancy_name }} </a>
 
                                {% else %}
-                               <a href="{% url 'resume:resume_detail' obj.pk %}"> {{ obj.name }} </a>
+                               <a href="{% url 'resume:resume_detail' obj.pk %}"> {{ obj.resume_name }} </a>
 
                                {% endif %}
                            </td>

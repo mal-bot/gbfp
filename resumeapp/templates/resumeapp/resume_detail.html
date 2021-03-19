@@ -4,13 +4,10 @@
     <div class="col-12 h-100">
         <div class="col-6">
             <div class="mt-3">
-                <h3>{{ object.name }}
-                    {% if object.is_draft %}<h6 class="text-danger">Черновик</h6>{% endif %}
-                </h3>
-                {# в данный момент поля пользователя заполняются не все#}
+                <h3>{{object.resume_name }}</h3>
                 <p> {{object.user.first_name}} </p>
                 <p> {{object.user.last_name}}</p>
-                <p> {{object.user.age}}</p>
+                <p> {{object.user.user_age}}</p>
                 <p> {{object.user.email}}</p>
                 <p> {{object.cellphone}}</p>
                 <p> {{object.job_list}}</p>
@@ -18,7 +15,6 @@
                 <p> {{object.key_words}}</p>
                 <p> {{object.education}}</p>
                 <p> {{object.languages}}</p>
-
                 <div class="form-button mt-4">
                     <button class="btn btn-success w-md waves-effect waves-light">
                         <a href="#" class="text-decoration-none text-white">Пригласить</a>
@@ -26,11 +22,9 @@
                     <button class="btn btn-light w-md waves-effect waves-light border-secondary">
                         <a href="{% url 'main:main_list' %}" class="text-dark">Назад</a>
                     </button>
-                    <button class="btn btn-light w-md waves-effect waves-light border-secondary">
-                        <a href="#" class="text-dark"><i class="far fa-star"></i></a>
-                    </button>
                 </div>
-                <p class="mt-5">Резюме создано {{ object.created }}</p>
+                <p class="mt-4">Резюме создано {{ object.created_at }}</p>
+                <p class="mt-2">Резюме обновлено {{ object.updated_at }}</p>
             </div>
         </div>
     </div>

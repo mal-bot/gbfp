@@ -1,4 +1,5 @@
 from django.core.management import BaseCommand
+from gbfp.settings import MEDIA_URL
 import os
 
 
@@ -13,6 +14,10 @@ class Command(BaseCommand):
             print(f'Миграции для {app} очищены.')
             self.remove_files(path)
 
+        if not os.path.isdir(f'{MEDIA_URL[1:-1]}'):
+            os.mkdir(f'{MEDIA_URL[1:-1]}')
+            print(f'Папка {MEDIA_URL[1:-1]} создана')
+
         db_path = os.path.join(current_path, 'db.sqlite3')
         if os.path.exists(db_path):
             os.remove(db_path)
@@ -20,6 +25,7 @@ class Command(BaseCommand):
 
         print(os.popen('py manage.py makemigrations').read())
         print(os.popen('py manage.py migrate').read())
+        print(os.popen('py manage.py fill_db').read())
 
     def remove_files(self, path):
         for file in os.listdir(path):
