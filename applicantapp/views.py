@@ -30,7 +30,7 @@ class ResumeList(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
 class ApplicantUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
-    success_url = reverse_lazy('applicantapp:view')
+    success_url = reverse_lazy('applicant:view')
     form_class = ApplicantEditForm
     title = 'Редактировать данные профиля'
     template_name = 'applicantapp/applicant_form.html'

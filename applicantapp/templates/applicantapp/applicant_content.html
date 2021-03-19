@@ -26,8 +26,8 @@
                    <tr>
                        <th>#</th>
                        <th>Название</th>
-                       <th>Комментарий</th>
                        <th>Черновик</th>
+                       <th>Опубликовано</th>
                        <th>Действия</th>
                    </tr>
                </thead>
@@ -35,9 +35,9 @@
                    {% for resume in resume_list %}
                        <tr>
                            <td>{{ resume.id }}</td>
-                           <td>{{ resume.name }}</td>
-                           <td>{{ resume.comment }}</td>
+                           <td>{{ resume.resume_name }}</td>
                            <td> {% if resume.is_draft %} Да {% else %} Нет {% endif %}</td>
+                           <td> {% if resume.is_active %} Да {% else %} Нет {% endif %}</td>
                            <td>
                                <a href="{% url 'resume:resume_update' resume.pk %}">Редактировать</a>
                                <a href="{% url 'resume:resume_delete' resume.pk %}"
