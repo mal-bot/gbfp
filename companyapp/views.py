@@ -1,4 +1,4 @@
-from django.views.generic import ListView, UpdateView
+from django.views.generic import ListView, UpdateView, DetailView
 # from django.contrib.auth.decorators import login_required
 # from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -47,3 +47,8 @@ class CompanyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def handle_no_permission(self):
         return HttpResponseRedirect(reverse('main:main_list'))
 
+
+class CompanyDetailView(DetailView):
+    model = User
+    title = 'Компания'
+    template_name = 'companyapp/company_detail.html'
