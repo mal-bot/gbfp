@@ -18,10 +18,6 @@ class Command(BaseCommand):
             os.mkdir(f'{MEDIA_URL[1:-1]}')
             print(f'Папка {MEDIA_URL[1:-1]} создана')
 
-        if not os.path.isdir(f'{MEDIA_URL[1:-1]}\\avatars'):
-            os.mkdir(f'avatars')
-            print(f'Папка avatars создана')
-
         db_path = os.path.join(current_path, 'db.sqlite3')
         if os.path.exists(db_path):
             os.remove(db_path)
