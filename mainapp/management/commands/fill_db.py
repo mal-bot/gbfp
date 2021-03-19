@@ -148,6 +148,23 @@ class Command(BaseCommand):
         for item in vacancy:
             Vacancy.objects.create(**item)
 
+        responses = [
+            {'user': User.objects.filter(username='test4').first(),
+             'resume': Resume.objects.filter(id=1).first()},
+            {'user': User.objects.filter(username='test4').first(),
+             'resume': Resume.objects.filter(id=4).first()},
+            {'user': User.objects.filter(username='test5').first(),
+             'resume': Resume.objects.filter(id=4).first()},
+            {'user': User.objects.filter(username='test2').first(),
+             'vacancy': Vacancy.objects.filter(id=1).first()},
+            {'user': User.objects.filter(username='test2').first(),
+             'vacancy': Vacancy.objects.filter(id=4).first()},
+            {'user': User.objects.filter(username='test3').first(),
+             'vacancy': Vacancy.objects.filter(id=4).first()},
+        ]
+
+        for item in responses:
+            Responses.objects.create(**item)
 
         #    self.show_all_tables()
         self.count_tables_data()
