@@ -5,15 +5,16 @@
     <div class="col-12 h-100">
         <div class="col-6">
             <div class="mt-3">
-                <p> {{object.file}}</p>
-                <h3>{{object.company_name}}</h3>
-                <p> Основной вид деятельности:</p>
+                {# тут должна быть картинка аватарки #}
+                {# <p> {{object.file}}</p> #}
+                <h2>{{object.company_name}}</h2>
+                <h5> Основной вид деятельности:</h5>
                 <p> {{object.company_main_business}}</p>
-                <p> Электронная почта для связи:</p>
+                <h5> Электронная почта для связи:</h5>
                 <p> {{object.email}}</p>
-                <p> О компании:</p>
+                <h5> О компании:</h5>
                 <p> {{object.company_about}}</p>
-                <p> Компания основана {{object.company_since}}</p>
+                <h5> Компания основана {{object.company_since}}</h5>
                 <div class="form-button mt-4">
                     <button class="btn btn-light w-md waves-effect waves-light border-secondary">
                         <a href="{% url 'main:main_list' %}" class="text-dark">Назад</a>

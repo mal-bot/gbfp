@@ -4,16 +4,28 @@
     <div class="col-12 h-100">
         <div class="col-6">
             <div class="mt-3">
-                <h3>{{object.resume_name }}</h3>
-                <p> {{object.user.first_name}} </p>
+                <h2>{{object.resume_name }}</h2>
+                <h5> Фамилия: </h5>
                 <p> {{object.user.last_name}}</p>
+                <h5> Имя: </h5>
+                <p> {{object.user.first_name}} </p>
+                <h5> Отчество: </h5>
+                <p> {{object.user.user_patronymic}} </p>
+                <h5> Возраст: </h5>
                 <p> {{object.user.user_age}}</p>
+                <h5> Электронная почта: </h5>
                 <p> {{object.user.email}}</p>
+                <h5> Номер телефона: </h5>
                 <p> {{object.cellphone}}</p>
+                <h5> Опыт работы: </h5>
                 <p> {{object.job_list}}</p>
+                <h5> Ожидаемая заработная плата: </h5>
                 <p> {{object.salary}}</p>
+                <h5> Ключевые навыки: </h5>
                 <p> {{object.key_words}}</p>
+                <h5> Образование: </h5>
                 <p> {{object.education}}</p>
+                <h5> Знание языков: </h5>
                 <p> {{object.languages}}</p>
                 <div class="form-button mt-4">
                     <button class="btn btn-success w-md waves-effect waves-light">
