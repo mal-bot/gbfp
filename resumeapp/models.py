@@ -3,7 +3,7 @@ from authapp.models import User
 
 
 class Resume(models.Model):
-        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
         # name должно быть видно только соискателю
         name = models.CharField(verbose_name='название', max_length=250, blank=True, null=True)
         cellphone = models.PositiveBigIntegerField(verbose_name='номер телефона')
