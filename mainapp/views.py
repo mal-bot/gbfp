@@ -7,7 +7,7 @@ from resumeapp.models import Resume
 
 def main_list(request):
     if request.user.is_staff:
-        data = Resume.objects.filter(is_draft=False, is_approved=True)
+        data = Resume.objects.filter(is_draft=False)
         # data = Resume.objects.all()
         title = 'Список резюме'
     else:

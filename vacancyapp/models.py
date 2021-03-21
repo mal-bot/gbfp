@@ -14,7 +14,7 @@ class Vacancy(models.Model):
     created = models.DateTimeField(verbose_name='создан', auto_now_add=True)
     updated = models.DateTimeField(verbose_name='обновлен', auto_now=True)
 
-    is_approved = models.BooleanField(default=False)
+    is_approved = models.BooleanField(verbose_name='Проверено', default=False)
 
     class Meta:
         ordering = ('-created',)
