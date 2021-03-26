@@ -1,10 +1,11 @@
 <div id="header">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
-        <div class="container-fluid mx-5">
-            <div id="logo" class="text-center align-middle">
-                <span class="align-middle fw-bold text-light">GB</span>
-                <!-- <a class="navbar-brand text-center p-0 fs-3"  href="#">GB</a> -->
-            </div>
+        <div class="container-fluid ">
+            <a href="{% url "main:main" %}">
+                <div id="logo" class="text-center align-middle rounded-circle">
+                    <img src="/static/gb.png" alt="">
+                </div>
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarId"
                     aria-controls="navbarId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -14,9 +15,12 @@
                     {#                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" #}
                     {#                       href="{% url 'main' %}">Главная</a>#}
                     <a class="nav-link {% if request.path == '/news/' or request.path == '/' %}active{% endif %}"
-                       aria-current="page" href="{% url 'main:main_list' %}">Новости</a>
+                       aria-current="page" href="{% url 'main:main' %}">Новости</a>
                     <a class="nav-link {% if request.path == '/rules/' %}active{% endif %}" aria-current="page"
                        href="{% url 'rules' %}">Правила портала</a>
+                    <a class="nav-link {% if request.path == '/list/' %}active{% endif %}"
+                       aria-current="page" href="{% url 'main:main_list' %}">{% if request.user.is_staff %}
+                        Резюме{% else %}Вакансии{% endif %}</a>
                 </div>
             </div>
             {#            <a class="btn btn-outline-secondary btn-sm" href="/auth/account/login/" role="button">Войти</a>#}
@@ -24,7 +28,7 @@
                 {#                <a class="btn btn-outline-secondary btn-sm" href="">{{ request.user }}</a>#}
                 <div class="dropstart">
                     <div class="dropdown">
-                        <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
+                        <a class="btn btn-outline-light dropdown-toggle rounded-pill" href="#" role="button"
                            id="dropdownMenuLink"
                            data-bs-toggle="dropdown" aria-expanded="false">
                             {{ request.user }}
@@ -58,7 +62,8 @@
 
                 </div>
             {% else %}
-                <a class="btn btn-outline-light btn-sm" href="{% url 'auth:login' %}" role="button">Войти</a>
+                <a class="btn btn-outline-light rounded-pill" href="{% url 'auth:login' %}"
+                   role="button">Войти</a>
 
             {% endif %}
         </div>

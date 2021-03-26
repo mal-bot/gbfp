@@ -1,11 +1,20 @@
 #logo {
-    background-color: red;
+    /*background-color: red;*/
     border-radius: 50%;
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
 }
 
-#logo > span {
-    line-height: 2.5;
+#logo > img {
+    /*line-height: 2.5;*/
+    border-radius: 50%;
 }
 
+#main, #header > .navbar > * {
+    margin: 0 auto;
+    width: 1280px;
+}
+
+#header > .navbar {
+    height: 80px;
+}
