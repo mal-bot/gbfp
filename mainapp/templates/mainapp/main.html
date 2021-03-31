@@ -2,40 +2,7 @@
 {% load static %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-    <h3>{{ title }}</h3>
-          <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%"
-                      cellspacing="0">
-               <thead>
-                   <tr>
-                       <th>#</th>
-                       <th>Название</th>
-
-                   </tr>
-               </thead>
-               <tbody>
-                   {% for obj in data %}
-                       <tr>
-                           <td>{{ obj.id }}</td>
-                           <td>{% if title == 'Список вакансий' %}
-                               <a href="{% url 'vacancy:vacancy_detail' obj.pk %}"> {{ obj.vacancy_name }} </a>
-
-                               {% else %}
-                               <a href="{% url 'resume:resume_detail' obj.pk %}"> {{ obj.resume_name }} </a>
-
-                               {% endif %}
-                           </td>
-                       </tr>
-                   {% endfor %}
-               </tbody>
-               </table>
-    {% endif %}
-
-<br>
-<br>
-<br>
-
-
+    <h5 class="m-2">Новости</h5>
     <div class="card m-2 shadow-sm" style="">
         <!-- <img src="" class="card-img-top" alt="..."> -->
         <div class="card-body">
