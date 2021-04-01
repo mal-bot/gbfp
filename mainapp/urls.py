@@ -7,6 +7,6 @@ app_name = 'main'
 
 urlpatterns = [
     path('invite/<int:pk>/', mainapp.invite, name='main_invite'),
-    path('', TemplateView.as_view(template_name='mainapp/main.html'), name='main'),
-    path('list/', mainapp.main_list, name='main_list'),
+    path('', mainapp.main_news, name='main'),
+    path('list/', mainapp.vac_res_list, name='vac_res_list'),
 ]

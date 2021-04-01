@@ -7,9 +7,10 @@
             <div class="card w-auto m-2" style="">
                 <div class="card-body">
                     <h5 class="card-title">{{ obj.name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted ">{{ obj.salary }}</h6>
+
                     <p class="card-text">{% if title == 'Список вакансий' %}{{ obj.description }}{% else %}
-                        {{ obj.comment }}{% endif %}</p>
+                        {{ obj.resume_name }}{% endif %}</p>
+                    <h6 class="card-subtitle mb-2 text-muted ">{{ obj.salary }}</h6>
                     <a href="
 
 

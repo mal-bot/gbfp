@@ -8,7 +8,7 @@ class Vacancy(models.Model):
     description = models.TextField(verbose_name='Описание должности', max_length=250, blank=True, null=True)
     salary = models.FloatField(verbose_name='Заработная плата', blank=True, default=0)
     is_draft = models.BooleanField(verbose_name='Черновик', default=False)
-    is_active = models.BooleanField(verbose_name='Активеность', default=False)
+    is_active = models.BooleanField(verbose_name='Опубликовано', default=False)
     created_at = models.DateTimeField(verbose_name='Создана', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлена', auto_now=True)
 

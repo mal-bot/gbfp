@@ -14,7 +14,8 @@ class Resume(models.Model):
     is_draft = models.BooleanField(verbose_name='Черновик', default=False)
     created_at = models.DateTimeField(verbose_name='Создано', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлено', auto_now=True)
-    is_active = models.BooleanField(verbose_name='Активеность', default=False)
+    is_active = models.BooleanField(verbose_name='Опубликовано', default=False)
+    is_approved = models.BooleanField(verbose_name='Проверено', default=False)
 
     class Meta:
         ordering = ('resume_name',)

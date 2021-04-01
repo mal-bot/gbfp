@@ -12,22 +12,16 @@ from mainapp.models import Responses
 class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     template_name = 'applicantapp/applicant_content.html'
     model = Resume
-    # context_object_name = 'resume_list'
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['resume_list'] = Resume.objects.filter(user_id=self.request.user.pk)
-        # print(context['resume_list'])
-        context['responses_list'] = Responses.objects.all()
-        # context['responses_list'] = Responses.objects.filter(resume_id=
-        #                                                      Resume.objects.filter(user_id=
-        #                                                                            self.request.user.pk).first())
-        # print(context['responses_list'])
+        responses = Responses.objects.filter(resume_id__in=
+                                             Resume.objects.filter(user_id=
+                                                                   self.request.user.pk)).order_by('user')
+        context['responses_list'] = responses
         context['title'] = 'Личный кабинет'
         return context
-
-    # def get_queryset(self):
-    #     return self.model.objects.filter(user_id=self.request.user.pk)
 
     def test_func(self):
         return not self.request.user.is_staff

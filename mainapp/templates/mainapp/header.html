@@ -1,7 +1,7 @@
 <div id="header">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
         <div class="container-fluid ">
-            <a href="{% url "main:main" %}">
+            <a href="{% url 'main:main' %}">
                 <div id="logo" class="text-center align-middle rounded-circle">
                     <img src="/static/gb.png" alt="">
                 </div>
@@ -19,8 +19,8 @@
                     <a class="nav-link {% if request.path == '/rules/' %}active{% endif %}" aria-current="page"
                        href="{% url 'rules' %}">Правила портала</a>
                     <a class="nav-link {% if request.path == '/list/' %}active{% endif %}"
-                       aria-current="page" href="{% url 'main:main_list' %}">{% if request.user.is_staff %}
-                        Резюме{% else %}Вакансии{% endif %}</a>
+                       aria-current="page" href="{% url 'main:vac_res_list' %}">{%if request.user.is_authenticated%}{% if request.user.is_staff %}
+                        Резюме{% else %}Вакансии{% endif %}{% endif %}</a>
                 </div>
             </div>
             {#            <a class="btn btn-outline-secondary btn-sm" href="/auth/account/login/" role="button">Войти</a>#}
