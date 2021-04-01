@@ -14,7 +14,11 @@
                 {# TODO привязать ссылку на детальную информацию о компании #}
                 <div class="form-button mt-4">
                     <button class="btn btn-success w-md waves-effect waves-light">
-                        <a href="{% url 'main:main_invite' object.pk %}" class="text-decoration-none text-white">Откликнуться</a>
+                        {% if in_responses %}
+                            <a class="text-decoration-none text-white">Ждем ответ</a>
+                        {% else %}
+                            <a href="{% url 'main:main_invite' object.pk %}" class="text-decoration-none text-white">Откликнуться</a>
+                        {% endif %}
                     </button>
                     <button class="btn btn-light w-md waves-effect waves-light border-secondary">
                         <a href="{% url 'main:vac_res_list' %}" class="text-dark">Назад</a>
