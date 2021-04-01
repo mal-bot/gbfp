@@ -43,6 +43,7 @@ class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Resume
+    exclude = ('is_approved',)
     success_url = reverse_lazy('applicant:view')
     form_class = ResumeEditForm
     title = 'Редактировать резюме'
@@ -80,4 +81,5 @@ class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class ResumeDetailView(DetailView):
     model = Resume
     title = 'Вакансия'
+    exclude = ('is_approved',)
     template_name = 'resumeapp/resume_detail.html'

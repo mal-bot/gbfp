@@ -2,29 +2,15 @@
 {% load static %}
 
 {% block content %}
-    <h5 class="m-2">Новости</h5>
+{% for post in blog_posts %}
     <div class="card m-2 shadow-sm" style="">
         <!-- <img src="" class="card-img-top" alt="..."> -->
         <div class="card-body">
-            <h5 class="card-title">С 8 марта, дамы!</h5>
-            <h6 class="card-subtitle mb-2 text-muted ">08.03.2021</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias architecto
-                atque cum dignissimos dolor, dolorum eaque facilis harum ipsum laboriosam modi odio qui repellat
-                suscipit ullam, unde voluptates voluptatibus!</p>
-            b5
+            <h5 class="card-title">{{ post.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted ">{{ post.date }}</h6>
+            <p class="card-text">{{ post.text }}</p>
         </div>
     </div>
-    <div class="card m-2 shadow-sm" style="">
-        <!-- <img src="" class="card-img-top" alt="..."> -->
-        <div class="card-body">
-            <h5 class="card-title">Мы открылись!</h5>
-            <h6 class="card-subtitle mb-2 text-muted ">08.03.2021</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam culpa cum delectus
-                dolor earum eius id illo in ipsam, magnam modi quas quis similique suscipit unde velit veritatis
-                vitae!</p>
-            b5
-        </div>
-    </div>
-
+{% endfor %}
 
 {% endblock %}

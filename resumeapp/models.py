@@ -3,7 +3,7 @@ from authapp.models import User
 
 
 class Resume(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     resume_name = models.CharField(verbose_name='Желаемая должность', max_length=250, blank=True, null=True)
     cellphone = models.PositiveBigIntegerField(verbose_name='Номер телефона')
     salary = models.FloatField(verbose_name='Ожидаемая заработная плата', blank=True, default=0)

@@ -12,6 +12,8 @@ class Vacancy(models.Model):
     created_at = models.DateTimeField(verbose_name='Создана', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлена', auto_now=True)
 
+    is_approved = models.BooleanField(verbose_name='Проверено', default=False)
+
     class Meta:
         ordering = ('-created_at',)
         verbose_name = 'Вакансия'
