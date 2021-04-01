@@ -1,6 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+from mainapp.models import Responses
 from vacancyapp.forms import VacancyEditForm
 from vacancyapp.models import Vacancy
 from django.http import HttpResponseRedirect
@@ -13,20 +15,21 @@ class VacancyListView(ListView):
     paginate_by = 10
     title = 'Вакансии'
     ordering = '-is_active'
-    # template_name = 'vacancyapp/vacancy_list.html'
     template_name = 'companyapp/pa_content.html'
-
-    # def test_func(self):
-    #     return self.request.user.is_staff
-
-    # def handle_no_permission(self):
-    #     return HttpResponseRedirect(reverse('main:main_list'))
 
 
 class VacancyDetailView(DetailView):
     model = Vacancy
     title = 'Вакансия'
     template_name = 'vacancyapp/vacancy_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['in_responses'] = False
+        response = Responses.objects.filter(vacancy_id=self.kwargs['pk'], user_id=self.request.user.pk)
+        if response:
+            context['in_responses'] = True
+        return context
 
 
 class VacancyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
