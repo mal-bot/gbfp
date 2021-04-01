@@ -18,6 +18,7 @@ class BlogPost(models.Model):
     def __str__(self):
         return self.title
 
+
 class Responses(models.Model):
     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, verbose_name='Вакансия',
                                 unique=False, null=True, blank=True)

@@ -16,7 +16,7 @@ class Login(LoginView):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('main:main_list'))
+    return HttpResponseRedirect(reverse('main:main'))
 
 
 class ApplicantRegistration(CreateView):
