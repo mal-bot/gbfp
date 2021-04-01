@@ -2,39 +2,6 @@
 {% load static %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-    <h3>{{ title }}</h3>
-          <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%"
-                      cellspacing="0">
-               <thead>
-                   <tr>
-                       <th>#</th>
-                       <th>Название</th>
-
-                   </tr>
-               </thead>
-               <tbody>
-                   {% for obj in data %}
-                       <tr>
-                           <td>{{ obj.id }}</td>
-                           <td>{% if title == 'Список вакансий' %}
-                               <a href="{% url 'vacancy:vacancy_detail' obj.pk %}"> {{ obj.name }} </a>
-
-                               {% else %}
-                               <a href="{% url 'resume:resume_detail' obj.pk %}"> {{ obj.name }} </a>
-
-                               {% endif %}
-                           </td>
-                       </tr>
-                   {% endfor %}
-               </tbody>
-               </table>
-    {% endif %}
-
-<br>
-<br>
-<br>
-
 {% for post in blog_posts %}
     <div class="card m-2 shadow-sm" style="">
         <!-- <img src="" class="card-img-top" alt="..."> -->
@@ -44,7 +11,6 @@
             <p class="card-text">{{ post.text }}</p>
         </div>
     </div>
-    {% endfor %}
-
+{% endfor %}
 
 {% endblock %}

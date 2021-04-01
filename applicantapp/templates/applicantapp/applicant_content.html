@@ -26,8 +26,8 @@
                    <tr>
                        <th>#</th>
                        <th>Название</th>
-                       <th>Комментарий</th>
                        <th>Черновик</th>
+                       <th>Опубликовано</th>
                        <th>Действия</th>
                    </tr>
                </thead>
@@ -35,9 +35,9 @@
                    {% for resume in resume_list %}
                        <tr>
                            <td>{{ resume.id }}</td>
-                           <td>{{ resume.name }}</td>
-                           <td>{{ resume.comment }}</td>
+                           <td>{{ resume.resume_name }}</td>
                            <td> {% if resume.is_draft %} Да {% else %} Нет {% endif %}</td>
+                           <td> {% if resume.is_active %} Да {% else %} Нет {% endif %}</td>
                            <td>
                                <a href="{% url 'resume:resume_update' resume.pk %}">Редактировать</a>
                                <a href="{% url 'resume:resume_delete' resume.pk %}"
@@ -53,16 +53,30 @@
         </div>
         <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h6 class="border-bottom pb-2 mb-0">Мои предложения</h6>
-           {% if not pa_responces %}
+           {% if not responses_list %}
             <p class="lead">Пока нет предложений</p>
            {% else %}
-                {% for item in pa_proposal %}
-                    <div class="d-flex text-muted pt-3">
-                        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                            <div>{{ item }}</div>
-                        </div>
-                    </div>
-                {% endfor %}
+                <table class="table table-striped dt-responsive nowrap table-vertical" width="100%"
+                      cellspacing="0">
+               <thead>
+                   <tr>
+                       <th>#</th>
+                       <th>Резюме</th>
+                       <th>Компания</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   {% for item in responses_list %}
+                       {% if item.resume %}
+                           <tr>
+                               <td>{{ item.id }}</td>
+                               <td>{{ item.resume.resume_name }}</td>
+                               <td><a href="{% url 'company:company_detail' item.user.id %}" class="text-decoration-none">{{ item.user.company_name }}</a></td>
+                           </tr>
+                       {% endif %}
+                   {% endfor %}
+               </tbody>
+               </table>
         {% endif %}
         </div>
 {% endblock %}

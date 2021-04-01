@@ -3,24 +3,14 @@ from django.db import models
 
 
 class User(AbstractUser):
-    description = models.TextField("Описание", null=True, blank=True)
-    age = models.IntegerField("Возраст", null=True, blank=True)
-    about = models.TextField("О себе", null=True, blank=True)
-    company_name = models.CharField("Название компании", max_length=150)
-    main_business = models.CharField("Род деятельности", max_length=150)
-    # test = models.TextField("test", null=True, blank=True)
+    user_age = models.IntegerField("Возраст", null=True, blank=True)
+    user_about = models.TextField("О себе", null=True, blank=True)
+    user_patronymic = models.CharField(verbose_name='Отчество', max_length=150, null=True, blank=True)
+    company_name = models.CharField("Название компании", max_length=150, null=True, blank=True)
+    company_about = models.TextField(verbose_name='О компании', null=True, blank=True)
+    company_main_business = models.CharField("Род деятельности", max_length=150, null=True, blank=True)
+    company_since = models.DateTimeField(verbose_name='Основана', null=True, blank=True)
+    file = models.FileField(verbose_name='Фото', upload_to='avatars', blank=True)
+    is_partner = models.BooleanField(verbose_name='Партнер', blank=True, default=False)
 
-# Create your models here.
-# class Company(models.Model):
-#     user = models.OneToOneField
-#     name = models.CharField
-#     description = models.CharField
-#     since = models.DateTimeField
-#     is_active = models.BooleanField
-#     created_at = models.DateTimeField
-#     edited_at = models.DateTimeField
-#
-#
-# class Applicant(models.Model):
-#     user = models.OneToOneField
-#     first_name
+
