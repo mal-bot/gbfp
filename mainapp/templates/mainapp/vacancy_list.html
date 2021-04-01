@@ -1,0 +1,26 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <h3 class="m-2">{{ title }}</h3>
+        {% for obj in data %}
+            <div class="card w-auto m-2" style="">
+                <div class="card-body">
+                    <h5 class="card-title">{{ obj.name }}</h5>
+
+                    <p class="card-text">{% if title == 'Список вакансий' %}{{ obj.description }}{% else %}
+                        {{ obj.resume_name }}{% endif %}</p>
+                    <h6 class="card-subtitle mb-2 text-muted ">{{ obj.salary }}</h6>
+                    <a href="
+
+
+                            {% if title == 'Список вакансий' %}{% url 'vacancy:vacancy_detail' obj.pk %}{% else %}{% url 'resume:resume_detail' obj.pk %}{% endif %}"
+                       class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        {% empty %}
+            <h6>Извините, нет вакансий для отображения</h6>
+
+        {% endfor %}
+    {% endif %}
+{% endblock %}

@@ -133,3 +133,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     'static',
 )
+MEDIA_URL = '/documents_folder/'
+MEDIA_ROOT = BASE_DIR / MEDIA_URL[1:-1]
