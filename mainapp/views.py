@@ -8,7 +8,11 @@ from mainapp.models import Responses
 
 def main_news(request):
     blog_posts = BlogPost.objects.all()
-    context = {'blog_posts': blog_posts}
+    company_list = User.objects.filter(is_partner=True)
+    context = {
+        'blog_posts': blog_posts,
+        'company_list': company_list,
+    }
     return render(request, 'mainapp/main.html', context)
 
 

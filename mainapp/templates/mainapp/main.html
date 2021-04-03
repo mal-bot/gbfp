@@ -2,15 +2,29 @@
 {% load static %}
 
 {% block content %}
-{% for post in blog_posts %}
-    <div class="card m-2 shadow-sm" style="">
-        <!-- <img src="" class="card-img-top" alt="..."> -->
-        <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted ">{{ post.date }}</h6>
-            <p class="card-text">{{ post.text }}</p>
+    <h3 class="text-center mb-3">Партнеры</h3>
+    {% for company in company_list %}
+        <div class="row row-cols-1 row-cols-md-4 g-6">
+            <div class="col">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150x50" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ company.company_name }}</h5>
+                        <p class="card-text">{{ company.company_about }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-{% endfor %}
-
+    {% endfor %}
+    <h3 class="text-center mt-3 mb-3">Новости</h3>
+    {% for post in blog_posts %}
+        <div class="card m-2 shadow-sm" style="">
+            <!-- <img src="" class="card-img-top" alt="..."> -->
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted ">{{ post.date }}</h6>
+                <p class="card-text">{{ post.text }}</p>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
