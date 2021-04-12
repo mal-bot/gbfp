@@ -6,7 +6,7 @@ from django.urls import reverse
 from applicantapp.forms import ApplicantEditForm
 from authapp.models import User
 from resumeapp.models import Resume
-from mainapp.models import Responses
+from mainapp.models import Responses, Favorites
 
 
 class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
@@ -19,8 +19,10 @@ class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         responses = Responses.objects.filter(resume_id__in=
                                              Resume.objects.filter(user_id=
                                                                    self.request.user.pk)).order_by('user')
+        favorites = Favorites.objects.filter(user_id=self.request.user.pk)
+        context['favorites'] = favorites
         context['responses_list'] = responses
-        context['title'] = 'Личный кабинет'
+        context['title'] = 'Личный кабинет соискателя'
         return context
 
     def test_func(self):

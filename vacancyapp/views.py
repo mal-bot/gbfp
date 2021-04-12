@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from mainapp.models import Responses
+from mainapp.models import Responses, Favorites
 from vacancyapp.forms import VacancyEditForm
 from vacancyapp.models import Vacancy
 from django.http import HttpResponseRedirect
@@ -26,9 +26,13 @@ class VacancyDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['in_responses'] = False
+        context['in_favorites'] = False
         response = Responses.objects.filter(vacancy_id=self.kwargs['pk'], user_id=self.request.user.pk)
+        favorites = Favorites.objects.filter(vacancy_id=self.kwargs['pk'], user_id=self.request.user.pk)
         if response:
             context['in_responses'] = True
+        if favorites:
+            context['in_favorites'] = True
         return context
 
 

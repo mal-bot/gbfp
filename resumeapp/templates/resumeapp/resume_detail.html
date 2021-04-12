@@ -38,6 +38,13 @@
                     <button class="btn btn-light w-md waves-effect waves-light border-secondary">
                         <a href="{% url 'main:vac_res_list' %}" class="text-dark text-decoration-none">Назад</a>
                     </button>
+                    <button class="btn btn-light w-md waves-effect waves-light border-secondary">
+                        {% if in_favorites %}
+                            <a href="#" class="text-dark"><i class="far fa-star" aria-hidden="true"></i></a>
+                        {% else %}
+                            <a href="{% url 'main:main_favorites' object.pk %}" class="text-dark"><i class="far fa-star"></i></a>
+                        {% endif %}
+                    </button>
                 </div>
                 <p class="mt-4">Резюме создано {{ object.created_at }}</p>
                 <p class="mt-2">Резюме обновлено {{ object.updated_at }}</p>

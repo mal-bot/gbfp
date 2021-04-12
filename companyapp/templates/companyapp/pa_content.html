@@ -5,10 +5,11 @@
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h6 class="border-bottom pb-2 mb-0">Мои избранные</h6>
-        {% for item in favourites_list %}
+        {% for item in favorites %}
             <div class="d-flex text-muted pt-3">
                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                    <div>{{ item }}</div>
+                    <div></div>
+                    <a href="{% url 'resume:resume_detail' item.resume.pk %}">{{ item.resume }}</a>
                 </div>
             </div>
         {% empty %}

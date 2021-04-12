@@ -11,6 +11,7 @@
     {% block css %}
         <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+        <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
     {% endblock %}
     {% block js %}
         <script src="{% static 'js/bootstrap.js' %}"></script>
@@ -23,9 +24,7 @@
         {% include 'mainapp/header.html' %}
         <div class="wrapper" id="header">
             <div class="header__logo"></div>
-            {% block menu %}
-                {#                {% include 'gbfp/include/inc_main_menu.html' %}#}
-            {% endblock %}
+
         </div>
 
         <div class="wrapper" id="page-title">

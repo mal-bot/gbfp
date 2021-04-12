@@ -3,7 +3,7 @@ from django.views.generic import ListView, UpdateView, DetailView
 # from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from mainapp.models import Responses
+from mainapp.models import Responses, Favorites
 from vacancyapp.models import Vacancy
 from authapp.models import User
 from companyapp.forms import UserEditForm
@@ -23,8 +23,10 @@ class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         responses = Responses.objects.filter(vacancy_id__in=
                                              Vacancy.objects.filter(company_id=
                                                                     self.request.user.pk)).order_by('user')
+        favorites = Favorites.objects.filter(user_id=self.request.user.pk)
         context['responses_list'] = responses
-        context['title'] = 'Личный кабинет'
+        context['favorites'] = favorites
+        context['title'] = 'Личный кабинет работодателя'
         return context
 
     def test_func(self):

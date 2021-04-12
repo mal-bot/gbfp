@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from mainapp.models import BlogPost
+from mainapp.models import BlogPost, Favorites
 from authapp.models import User
+from resumeapp.views import ResumeDetailView
 from vacancyapp.models import Vacancy
 from resumeapp.models import Resume
 from mainapp.models import Responses
+from vacancyapp.views import VacancyDetailView
 
 
 def main_news(request):
@@ -47,5 +49,27 @@ def invite(request, pk):
                                          user=user)
         if not check:
             Responses.objects.create(vacancy=vacancy,
+                                     user=user)
+    return vac_res_list(request)
+
+
+def favorites(request, pk):
+    if request.user.is_staff:
+        resume = Resume.objects.filter(pk=pk).first()
+        user = User.objects.filter(pk=request.user.pk).first()
+        check = Favorites.objects.filter(resume=resume,
+                                         user=user)
+        if not check:
+            Favorites.objects.create(resume=resume,
+                                     user=user)
+        # return ResumeDetailView.as_view()
+
+    else:
+        vacancy = Vacancy.objects.filter(pk=pk).first()
+        user = User.objects.filter(pk=request.user.pk).first()
+        check = Favorites.objects.filter(vacancy=vacancy,
+                                         user=user)
+        if not check:
+            Favorites.objects.create(vacancy=vacancy,
                                      user=user)
     return vac_res_list(request)
