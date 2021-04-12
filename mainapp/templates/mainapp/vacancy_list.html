@@ -12,15 +12,27 @@
                         {{ obj.resume_name }}{% endif %}</p>
                     <h6 class="card-subtitle mb-2 text-muted ">{{ obj.salary }}</h6>
                     <a href="
-
-
-                            {% if title == 'Список вакансий' %}{% url 'vacancy:vacancy_detail' obj.pk %}{% else %}{% url 'resume:resume_detail' obj.pk %}{% endif %}"
+                    {% if title == 'Список вакансий' %}
+                     {% url 'vacancy:vacancy_detail' obj.pk %}
+                    {% else %}
+                     {% url 'resume:resume_detail' obj.pk %}
+                    {% endif %}"
                        class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
         {% empty %}
             <h6>Извините, нет вакансий для отображения</h6>
-
         {% endfor %}
     {% endif %}
+        <div class="paginator">
+            {% if data.has_previous %}
+                <a href="?page={{ data.previous_page_number }}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+            {% endif %}
+            <span class="current">
+            Страница {{ data.number }} из {{ data.paginator.num_pages }}
+            </span>
+            {% if data.has_next %}
+                <a href="?page={{ data.next_page_number }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </div>
 {% endblock %}

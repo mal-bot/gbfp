@@ -1,11 +1,10 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from mainapp.models import BlogPost, Favorites
 from authapp.models import User
-from resumeapp.views import ResumeDetailView
 from vacancyapp.models import Vacancy
 from resumeapp.models import Resume
 from mainapp.models import Responses
-from vacancyapp.views import VacancyDetailView
 
 
 def main_news(request):
@@ -25,9 +24,19 @@ def vac_res_list(request):
     else:
         data = Vacancy.objects.filter(is_draft=False, is_active=True, is_approved=True)
         title = 'Список вакансий'
+    page = request.GET.get('page')
+    paginator = Paginator(data, 5)
+    try:
+        data_paginator = paginator.page(page)
+    except PageNotAnInteger:
+        data_paginator = paginator.page(1)
+    except EmptyPage:
+        data_paginator = paginator.page(paginator.num_pages)
+
     context = {
         'title': title,
-        'data': data,
+        'page': page,
+        'data': data_paginator,
     }
     return render(request, 'mainapp/vacancy_list.html', context)
 
@@ -62,7 +71,6 @@ def favorites(request, pk):
         if not check:
             Favorites.objects.create(resume=resume,
                                      user=user)
-        # return ResumeDetailView.as_view()
 
     else:
         vacancy = Vacancy.objects.filter(pk=pk).first()

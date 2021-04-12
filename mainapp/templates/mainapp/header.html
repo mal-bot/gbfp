@@ -12,8 +12,7 @@
             </button>
             <div class="collapse navbar-collapse ms-3" id="navbarId">
                 <div class="navbar-nav flex-row flex-wrap flex-grow">
-                    {#                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" #}
-                    {#                       href="{% url 'main' %}">Главная</a>#}
+
                     <a class="nav-link {% if request.path == '/news/' or request.path == '/' %}active{% endif %}"
                        aria-current="page" href="{% url 'main:main' %}">Новости</a>
                     <a class="nav-link {% if request.path == '/rules/' %}active{% endif %}" aria-current="page"
@@ -41,41 +40,7 @@
                         <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Выход</a></li>
                     </ul>
                 </div>
-{#                <div class="btn-group dropstart">#}
-{#                    <div class="dropdown">#}
-{#                        <a class="btn btn-outline-light dropdown-toggle rounded-pill" href="#" role="button"#}
-{#                           id="dropdownMenuLink"#}
-{#                           data-bs-toggle="dropdown" aria-expanded="false">#}
-{#                            {{ request.user }}#}
-{#                        </a>#}
-{##}
-{#                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">#}
-                            {# Лк работодателя #}
-{#                            {% if user.is_staff %}#}
-{#                                <li><a class="dropdown-item" href="{% url 'company:view' %}">Личный кабинет</a></li>#}
-{#                            {% else %}#}
-                                {# Лк соискателя #}
-{#                                <li><a class="dropdown-item" href="{% url 'applicant:view' %}">Личный кабинет</a></li>#}
-{#                            {% endif %}#}
-{#                            <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Выход</a></li>#}
-                            {#                        <li><a class="dropdown-item" href="#">Something else here</a></li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{##}
-{##}
-{#                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">#}
-                        {# Лк работодателя #}
-{#                        {% if user.is_staff %}#}
-{#                            <li><a class="dropdown-item" href="{% url 'company:view' %}">Личный кабинет</a></li>#}
-{#                        {% else %}#}
-                            {# Лк соискателя #}
-{#                            <li><a class="dropdown-item" href="{% url 'applicant:view' %}">Личный кабинет</a></li>#}
-{#                        {% endif %}#}
-{#                        <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Выход</a></li>#}
-                        {#                        <li><a class="dropdown-item" href="#">Something else here</a></li>#}
-{#                    </ul>#}
-{##}
-{#                </div>#}
+
             {% else %}
                 <a class="btn btn-outline-primary rounded-pill" href="{% url 'auth:login' %}"
                    role="button">Войти</a>
