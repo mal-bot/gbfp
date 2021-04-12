@@ -19,32 +19,29 @@
 </head>
 <body>
 
-
-<div id="page">
-    {% include 'mainapp/header.html' %}
-    <div class="wrapper" id="header">
-        <div class="container">
+<div class="container">
+    <div id="page">
+        {% include 'mainapp/header.html' %}
+        <div class="wrapper" id="header">
             <div class="header__logo"></div>
         </div>
-    </div>
 
-    <div class="wrapper" id="page-title">
-        <div class="container">
+        <div class="wrapper" id="page-title">
             <div class="pt-2 pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between align-items-center">
                     {% if request.resolver_match.url_name == 'view' %}
-                        <strong class="text-gray-dark">Личный кабинет пользователя {{ request.user|title }}</strong>
+                        <h4 class="text-gray-dark">Личный кабинет - {{ request.user|title }}</h4>
                         <a class="mt-2 btn btn-outline-secondary"
                            href="{% url 'company:company_update' request.user.pk %}">
                             Редактировать профиль
                         </a>
                     {% elif request.resolver_match.url_name == 'vacancy_update' %}
-                        <strong class="text-gray-dark">Редактирование вакансии {{ form.name.value }}</strong>
+                        <h4 class="text-gray-dark">Редактирование вакансии {{ form.name.value }}</h4>
                         <a class="mt-2 btn btn-outline-secondary" href="{% url 'company:view' %}">
                             Вернуться в личный кабинет
                         </a>
                     {% elif request.resolver_match.url_name == 'company_update' %}
-                        <strong class="text-gray-dark">Редактирование профиля {{ request.user.username }}</strong>
+                        <h4 class="text-gray-dark">Редактирование профиля {{ request.user.username }}</h4>
                         <a class="mt-2 btn btn-outline-secondary" href="{% url 'company:view' %}">
                             Вернуться в личный кабинет
                         </a>
@@ -53,14 +50,14 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="wrapper section">
-    <div id="personal_area" class="container">
-        {% block content %}
-        {% endblock %}
+    <div class="wrapper section">
+        <div id="personal_area">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
+    {% include 'mainapp/footer.html' %}
 </div>
-{% include 'mainapp/footer.html' %}
 </body>
 </html>

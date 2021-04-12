@@ -1,3 +1,6 @@
+import hashlib
+import random
+
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 from authapp.models import User
@@ -27,6 +30,16 @@ class ApplicantRegistrationForm(UserCreationForm):
             field.widget.attrs['class'] = 'form-control'
             field.help_text = None
 
+    def save(self, **kwargs):
+        user = super(ApplicantRegistrationForm, self).save()
+
+        user.is_active = False
+        salt = hashlib.sha1(str(random.random()).encode('utf8')).hexdigest()[:6]
+        user.activation_key = hashlib.sha1((user.email + salt).encode('utf8')).hexdigest()
+        user.save()
+
+        return user
+
 
 class CompanyRegistrationForm(UserCreationForm):
     class Meta:
@@ -39,3 +52,13 @@ class CompanyRegistrationForm(UserCreationForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = None
+
+    def save(self, **kwargs):
+        user = super(CompanyRegistrationForm, self).save()
+
+        user.is_active = False
+        salt = hashlib.sha1(str(random.random()).encode('utf8')).hexdigest()[:6]
+        user.activation_key = hashlib.sha1((user.email + salt).encode('utf8')).hexdigest()
+        user.save()
+
+        return user

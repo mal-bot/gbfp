@@ -7,14 +7,14 @@
             <div class="mt-3">
                 {# тут должна быть картинка аватарки #}
                 {# <p> {{object.file}}</p> #}
-                <h2>{{object.company_name}}</h2>
+                <h2>{{ object.company_name }}</h2>
                 <h5> Основной вид деятельности:</h5>
-                <p> {{object.company_main_business}}</p>
+                <p> {{ object.company_main_business }}</p>
                 <h5> Электронная почта для связи:</h5>
-                <p> {{object.email}}</p>
+                <p> {{ object.email }}</p>
                 <h5> О компании:</h5>
-                <p> {{object.company_about}}</p>
-                <h5> Компания основана {{object.company_since}}</h5>
+                <p> {{ object.company_about }}</p>
+                <h5> Компания основана {{ object.company_since }}</h5>
                 <div class="form-button mt-4">
                     <button class="btn btn-light w-md waves-effect waves-light border-secondary">
                         <a href="{% url 'main:main_list' %}" class="text-dark">Назад</a>
@@ -23,24 +23,24 @@
             </div>
         </div>
     </div>
-           {% if not vacancies_list %}
-            <p class="lead">Пока нет активных вакансий</p>
-           {% else %}
-               <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%"
-                      cellspacing="0">
-               <thead>
-                   <tr>
-                       <th>Список вакансий работодателя:</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   {% for vacancy in vacancies_list %}
-                       <tr>
-                           <td><a href="{% url 'vacancy:vacancy_detail' vacancy.pk %}"> {{ vacancy.vacancy_name }} </a></td>
-                       </tr>
-                   {% endfor %}
-               </tbody>
-               </table>
+    {% if not vacancies_list %}
+        <p class="lead">Пока нет активных вакансий</p>
+    {% else %}
+        <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%"
+               cellspacing="0">
+            <thead>
+            <tr>
+                <th>Список вакансий работодателя:</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for vacancy in vacancies_list %}
+                <tr>
+                    <td><a href="{% url 'vacancy:vacancy_detail' vacancy.pk %}"> {{ vacancy.vacancy_name }} </a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-        {% endif %}
+    {% endif %}
 {% endblock %}
