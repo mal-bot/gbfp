@@ -31,7 +31,9 @@
                         {{ request.user }}
                     </button>
                     <ul class="dropdown-menu">
-                        {% if user.is_staff %}
+                        {% if user.is_superuser %}
+                            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админка</a></li>
+                        {% elif user.is_staff %}
                             <li><a class="dropdown-item" href="{% url 'company:view' %}">Личный кабинет</a></li>
                         {% else %}
                             {# Лк соискателя #}

@@ -31,7 +31,7 @@
             <div class="pt-2 pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between align-items-center">
                     {% if request.resolver_match.url_name == 'view' %}
-                        <h4 class="text-gray-dark">Личный кабинет - {{ request.user|title }}</h4>
+                        <h4 class="text-gray-dark"> {{title}} - {{ request.user|title }}</h4>
                         <a class="mt-2 btn btn-outline-secondary"
                            href="{% url 'applicant:applicant_update' request.user.pk %}">
                             Редактировать профиль
