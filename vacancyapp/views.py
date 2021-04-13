@@ -38,7 +38,7 @@ class VacancyDetailView(DetailView):
 
 class VacancyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Vacancy
-    success_url = reverse_lazy('company:view')
+    success_url = reverse_lazy('company:company_view')
     form_class = VacancyEditForm
     title = 'Создать вакансию'
     template_name = 'vacancyapp/vacancy_form.html'
@@ -52,12 +52,12 @@ class VacancyCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return self.request.user.is_staff
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class VacancyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Vacancy
-    success_url = reverse_lazy('company:view')
+    success_url = reverse_lazy('company:company_view')
     form_class = VacancyEditForm
     title = 'Редактировать вакансию'
     template_name = 'vacancyapp/vacancy_form.html'
@@ -73,12 +73,12 @@ class VacancyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return result
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class VacancyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Vacancy
-    success_url = reverse_lazy('company:view')
+    success_url = reverse_lazy('company:company_view')
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -95,5 +95,5 @@ class VacancyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return result
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 

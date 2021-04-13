@@ -23,7 +23,7 @@
         {% empty %}
             <h6>Извините, нет вакансий для отображения</h6>
         {% endfor %}
-    {% endif %}
+
         <div class="paginator">
             {% if data.has_previous %}
                 <a href="?page={{ data.previous_page_number }}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
@@ -35,4 +35,5 @@
                 <a href="?page={{ data.next_page_number }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
             {% endif %}
         </div>
+    {% endif %}
 {% endblock %}

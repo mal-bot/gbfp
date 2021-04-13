@@ -20,7 +20,7 @@ class ResumeListView(ListView):
 
 class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Resume
-    success_url = reverse_lazy('applicant:view')
+    success_url = reverse_lazy('applicant:applicant_view')
     form_class = ResumeEditForm
     title = 'Создать резюме'
     template_name = 'resumeapp/resume_form.html'
@@ -34,13 +34,13 @@ class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return not self.request.user.is_staff
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Resume
     exclude = ('is_approved',)
-    success_url = reverse_lazy('applicant:view')
+    success_url = reverse_lazy('applicant:applicant_view')
     form_class = ResumeEditForm
     title = 'Редактировать резюме'
     template_name = 'resumeapp/resume_form.html'
@@ -56,12 +56,12 @@ class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return result
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Resume
-    success_url = reverse_lazy('applicant:view')
+    success_url = reverse_lazy('applicant:applicant_view')
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -78,7 +78,7 @@ class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return result
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class ResumeDetailView(DetailView):

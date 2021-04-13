@@ -29,7 +29,7 @@ class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return not self.request.user.is_staff
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:vac_res_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class ApplicantUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -43,7 +43,7 @@ class ApplicantUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user.pk == self.kwargs['pk']
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:vac_res_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class ApplicantDetailView(DetailView):

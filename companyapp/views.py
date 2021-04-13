@@ -33,7 +33,7 @@ class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return self.request.user.is_staff
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 # @method_decorator(login_required(), name='dispatch')
@@ -48,7 +48,7 @@ class CompanyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user.pk == self.kwargs['pk']
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class CompanyDetailView(DetailView):
