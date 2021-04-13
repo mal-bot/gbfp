@@ -18,8 +18,8 @@ class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context['resume_list'] = Resume.objects.filter(user_id=self.request.user.pk)
         responses = Responses.objects.filter(resume_id__in=
                                              Resume.objects.filter(user_id=
-                                                                   self.request.user.pk)).order_by('user')
-        favorites = Favorites.objects.filter(user_id=self.request.user.pk)
+                                                                   self.request.user.pk), is_active=True).order_by('user')
+        favorites = Favorites.objects.filter(user_id=self.request.user.pk, is_active=True)
         context['favorites'] = favorites
         context['responses_list'] = responses
         context['title'] = 'Личный кабинет соискателя'

@@ -22,8 +22,8 @@ class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context['vacancies_list'] = Vacancy.objects.filter(company_id=self.request.user.pk)
         responses = Responses.objects.filter(vacancy_id__in=
                                              Vacancy.objects.filter(company_id=
-                                                                    self.request.user.pk)).order_by('user')
-        favorites = Favorites.objects.filter(user_id=self.request.user.pk)
+                                                                    self.request.user.pk), is_active=True).order_by('user')
+        favorites = Favorites.objects.filter(user_id=self.request.user.pk, is_active=True)
         context['responses_list'] = responses
         context['favorites'] = favorites
         context['title'] = 'Личный кабинет работодателя'
