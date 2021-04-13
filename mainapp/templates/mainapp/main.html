@@ -7,7 +7,6 @@
         <div class="col">
             {% for company in company_list %}
                 <div class="card shadow-sm">
-{#                    <img src="https://via.placeholder.com/150x50" class="card-img-top" alt="...">#}
                     <div class="card-body">
                         <h5 class="card-title">{{ company.company_name }}</h5>
                         <p class="card-text">{{ company.company_about }}</p>
@@ -20,7 +19,6 @@
     <h3 class="text-center mt-3 mb-3">Новости</h3>
     {% for post in blog_posts %}
         <div class="card mb-2 shadow-sm" style="">
-            <!-- <img src="" class="card-img-top" alt="..."> -->
             <div class="card-body">
                 <h5 class="card-title mb-1">{{ post.title }}</h5>
                 <p class="card-subtitle mb-3 text-muted ">{{ post.date }}</p>

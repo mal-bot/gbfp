@@ -1,9 +1,11 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
-from mainapp.models import BlogPost
+from mainapp.models import BlogPost, Favorites
 from authapp.models import User
 from vacancyapp.models import Vacancy
 from resumeapp.models import Resume
 from mainapp.models import Responses
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def main_news(request):
@@ -23,9 +25,19 @@ def vac_res_list(request):
     else:
         data = Vacancy.objects.filter(is_draft=False, is_active=True, is_approved=True)
         title = 'Список вакансий'
+    page = request.GET.get('page')
+    paginator = Paginator(data, 5)
+    try:
+        data_paginator = paginator.page(page)
+    except PageNotAnInteger:
+        data_paginator = paginator.page(1)
+    except EmptyPage:
+        data_paginator = paginator.page(paginator.num_pages)
+
     context = {
         'title': title,
-        'data': data,
+        'page': page,
+        'data': data_paginator,
     }
     return render(request, 'mainapp/vacancy_list.html', context)
 
@@ -34,18 +46,70 @@ def invite(request, pk):
     if request.user.is_staff:
         resume = Resume.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Responses.objects.filter(resume=resume,
-                                         user=user)
-        if not check:
+        try:
+            check = Responses.objects.get(resume=resume,
+                                          user=user)
+        except ObjectDoesNotExist:
             Responses.objects.create(resume=resume,
                                      user=user)
+        else:
+            if not check.is_active:
+                check.is_active = True
+                check.save()
+            else:
+                check.is_active = False
+                check.save()
+    else:
+        vacancy = Vacancy.objects.filter(pk=pk).first()
+        user = User.objects.filter(pk=request.user.pk).first()
+        try:
+            check = Responses.objects.get(vacancy=vacancy,
+                                          user=user)
+        except ObjectDoesNotExist:
+            Responses.objects.create(vacancy=vacancy,
+                                     user=user)
+        else:
+            if not check.is_active:
+                check.is_active = True
+                check.save()
+            else:
+                check.is_active = False
+                check.save()
+    return vac_res_list(request)
+
+
+def favorites(request, pk):
+    if request.user.is_staff:
+        resume = Resume.objects.filter(pk=pk).first()
+        user = User.objects.filter(pk=request.user.pk).first()
+        try:
+            check = Favorites.objects.get(resume=resume,
+                                          user=user)
+        except ObjectDoesNotExist:
+            Favorites.objects.create(resume=resume,
+                                     user=user)
+        else:
+            if not check.is_active:
+                check.is_active = True
+                check.save()
+            else:
+                check.is_active = False
+                check.save()
 
     else:
         vacancy = Vacancy.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Responses.objects.filter(vacancy=vacancy,
-                                         user=user)
-        if not check:
-            Responses.objects.create(vacancy=vacancy,
+        try:
+            check = Favorites.objects.get(vacancy=vacancy,
+                                          user=user)
+        except ObjectDoesNotExist:
+            Favorites.objects.create(vacancy=vacancy,
                                      user=user)
+        else:
+            if not check.is_active:
+                check.is_active = True
+                check.save()
+            else:
+                check.is_active = False
+                check.save()
     return vac_res_list(request)

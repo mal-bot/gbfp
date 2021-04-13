@@ -6,7 +6,7 @@ from django.urls import reverse
 from applicantapp.forms import ApplicantEditForm
 from authapp.models import User
 from resumeapp.models import Resume
-from mainapp.models import Responses
+from mainapp.models import Responses, Favorites
 
 
 class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
@@ -18,16 +18,18 @@ class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context['resume_list'] = Resume.objects.filter(user_id=self.request.user.pk)
         responses = Responses.objects.filter(resume_id__in=
                                              Resume.objects.filter(user_id=
-                                                                   self.request.user.pk)).order_by('user')
+                                                                   self.request.user.pk), is_active=True).order_by('user')
+        favorites = Favorites.objects.filter(user_id=self.request.user.pk, is_active=True)
+        context['favorites'] = favorites
         context['responses_list'] = responses
-        context['title'] = 'Личный кабинет'
+        context['title'] = 'Личный кабинет соискателя'
         return context
 
     def test_func(self):
         return not self.request.user.is_staff
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:vac_res_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class ApplicantUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -41,7 +43,7 @@ class ApplicantUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user.pk == self.kwargs['pk']
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:vac_res_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class ApplicantDetailView(DetailView):

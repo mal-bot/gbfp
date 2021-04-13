@@ -3,7 +3,7 @@ from django.views.generic import ListView, UpdateView, DetailView
 # from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from mainapp.models import Responses
+from mainapp.models import Responses, Favorites
 from vacancyapp.models import Vacancy
 from authapp.models import User
 from companyapp.forms import UserEditForm
@@ -22,16 +22,18 @@ class IndexView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context['vacancies_list'] = Vacancy.objects.filter(company_id=self.request.user.pk)
         responses = Responses.objects.filter(vacancy_id__in=
                                              Vacancy.objects.filter(company_id=
-                                                                    self.request.user.pk)).order_by('user')
+                                                                    self.request.user.pk), is_active=True).order_by('user')
+        favorites = Favorites.objects.filter(user_id=self.request.user.pk, is_active=True)
         context['responses_list'] = responses
-        context['title'] = 'Личный кабинет'
+        context['favorites'] = favorites
+        context['title'] = 'Личный кабинет работодателя'
         return context
 
     def test_func(self):
         return self.request.user.is_staff
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 # @method_decorator(login_required(), name='dispatch')
@@ -46,7 +48,7 @@ class CompanyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user.pk == self.kwargs['pk']
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse('main:main_list'))
+        return HttpResponseRedirect(reverse('main:main'))
 
 
 class CompanyDetailView(DetailView):

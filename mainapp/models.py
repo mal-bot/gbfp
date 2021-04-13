@@ -40,3 +40,18 @@ class Responses(models.Model):
     #     except ValidationError:
     #         raise ValidationError(gettext_lazy('Такая запись уже существует.'))
 
+
+class Favorites(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь',
+                             unique=False, null=True, blank=False)
+    vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, verbose_name='Вакансия',
+                                unique=False, null=True, blank=True)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, verbose_name='Резюме',
+                               unique=False, null=True, blank=True)
+    is_active = models.BooleanField(verbose_name='Активность', blank=False, default=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['vacancy', 'user'],
+                                               name='unique_favorites_vacancy_user'),
+                       models.UniqueConstraint(fields=['resume', 'user'],
+                                               name='unique_favorites_resume_user')]
