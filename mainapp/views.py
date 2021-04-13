@@ -5,6 +5,7 @@ from authapp.models import User
 from vacancyapp.models import Vacancy
 from resumeapp.models import Resume
 from mainapp.models import Responses
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def main_news(request):
@@ -45,31 +46,35 @@ def invite(request, pk):
     if request.user.is_staff:
         resume = Resume.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Responses.objects.get(resume=resume,
-                                      user=user)
-        if not check:
+        try:
+            check = Responses.objects.get(resume=resume,
+                                          user=user)
+        except ObjectDoesNotExist:
             Responses.objects.create(resume=resume,
                                      user=user)
-        elif not check.is_active:
-            check.is_active = True
-            check.save()
         else:
-            check.is_active = False
-            check.save()
+            if not check.is_active:
+                check.is_active = True
+                check.save()
+            else:
+                check.is_active = False
+                check.save()
     else:
         vacancy = Vacancy.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Responses.objects.get(vacancy=vacancy,
-                                      user=user)
-        if not check:
+        try:
+            check = Responses.objects.get(vacancy=vacancy,
+                                          user=user)
+        except ObjectDoesNotExist:
             Responses.objects.create(vacancy=vacancy,
                                      user=user)
-        elif not check.is_active:
-            check.is_active = True
-            check.save()
         else:
-            check.is_active = False
-            check.save()
+            if not check.is_active:
+                check.is_active = True
+                check.save()
+            else:
+                check.is_active = False
+                check.save()
     return vac_res_list(request)
 
 
@@ -77,30 +82,34 @@ def favorites(request, pk):
     if request.user.is_staff:
         resume = Resume.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Favorites.objects.get(resume=resume,
-                                      user=user)
-        if not check:
+        try:
+            check = Favorites.objects.get(resume=resume,
+                                          user=user)
+        except ObjectDoesNotExist:
             Favorites.objects.create(resume=resume,
                                      user=user)
-        elif not check.is_active:
-            check.is_active = True
-            check.save()
         else:
-            check.is_active = False
-            check.save()
+            if not check.is_active:
+                check.is_active = True
+                check.save()
+            else:
+                check.is_active = False
+                check.save()
 
     else:
         vacancy = Vacancy.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Favorites.objects.get(vacancy=vacancy,
-                                      user=user)
-        if not check:
+        try:
+            check = Favorites.objects.get(vacancy=vacancy,
+                                          user=user)
+        except ObjectDoesNotExist:
             Favorites.objects.create(vacancy=vacancy,
                                      user=user)
-        elif not check.is_active:
-            check.is_active = True
-            check.save()
         else:
-            check.is_active = False
-            check.save()
+            if not check.is_active:
+                check.is_active = True
+                check.save()
+            else:
+                check.is_active = False
+                check.save()
     return vac_res_list(request)
