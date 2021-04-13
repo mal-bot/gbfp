@@ -45,20 +45,31 @@ def invite(request, pk):
     if request.user.is_staff:
         resume = Resume.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Responses.objects.filter(resume=resume,
-                                         user=user)
+        check = Responses.objects.get(resume=resume,
+                                      user=user)
         if not check:
             Responses.objects.create(resume=resume,
                                      user=user)
-
+        elif not check.is_active:
+            check.is_active = True
+            check.save()
+        else:
+            check.is_active = False
+            check.save()
     else:
         vacancy = Vacancy.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Responses.objects.filter(vacancy=vacancy,
-                                         user=user)
+        check = Responses.objects.get(vacancy=vacancy,
+                                      user=user)
         if not check:
             Responses.objects.create(vacancy=vacancy,
                                      user=user)
+        elif not check.is_active:
+            check.is_active = True
+            check.save()
+        else:
+            check.is_active = False
+            check.save()
     return vac_res_list(request)
 
 
@@ -66,18 +77,30 @@ def favorites(request, pk):
     if request.user.is_staff:
         resume = Resume.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Favorites.objects.filter(resume=resume,
-                                         user=user)
+        check = Favorites.objects.get(resume=resume,
+                                      user=user)
         if not check:
             Favorites.objects.create(resume=resume,
                                      user=user)
+        elif not check.is_active:
+            check.is_active = True
+            check.save()
+        else:
+            check.is_active = False
+            check.save()
 
     else:
         vacancy = Vacancy.objects.filter(pk=pk).first()
         user = User.objects.filter(pk=request.user.pk).first()
-        check = Favorites.objects.filter(vacancy=vacancy,
-                                         user=user)
+        check = Favorites.objects.get(vacancy=vacancy,
+                                      user=user)
         if not check:
             Favorites.objects.create(vacancy=vacancy,
                                      user=user)
+        elif not check.is_active:
+            check.is_active = True
+            check.save()
+        else:
+            check.is_active = False
+            check.save()
     return vac_res_list(request)

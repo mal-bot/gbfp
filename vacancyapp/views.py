@@ -27,8 +27,8 @@ class VacancyDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['in_responses'] = False
         context['in_favorites'] = False
-        response = Responses.objects.filter(vacancy_id=self.kwargs['pk'], user_id=self.request.user.pk)
-        favorites = Favorites.objects.filter(vacancy_id=self.kwargs['pk'], user_id=self.request.user.pk)
+        response = Responses.objects.filter(vacancy_id=self.kwargs['pk'], user_id=self.request.user.pk, is_active=True)
+        favorites = Favorites.objects.filter(vacancy_id=self.kwargs['pk'], user_id=self.request.user.pk, is_active=True)
         if response:
             context['in_responses'] = True
         if favorites:

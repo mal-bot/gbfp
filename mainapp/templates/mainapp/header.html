@@ -34,10 +34,10 @@
                         {% if user.is_superuser %}
                             <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админка</a></li>
                         {% elif user.is_staff %}
-                            <li><a class="dropdown-item" href="{% url 'company:view' %}">Личный кабинет</a></li>
+                            <li><a class="dropdown-item" href="{% url 'company:company_view' %}">Личный кабинет</a></li>
                         {% else %}
                             {# Лк соискателя #}
-                            <li><a class="dropdown-item" href="{% url 'applicant:view' %}">Личный кабинет</a></li>
+                            <li><a class="dropdown-item" href="{% url 'applicant:applicant_view' %}">Личный кабинет</a></li>
                         {% endif %}
                         <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Выход</a></li>
                     </ul>

@@ -1,4 +1,4 @@
-{% extends 'applicantapp/base.html' %}
+{% extends 'companyapp/base.html' %}
 
 {% block content %}
     <div class="row">
@@ -12,7 +12,7 @@
                             <button id="submit" type="submit"
                                     class="btn btn-primary w-md waves-effect waves-light">Отправить на проверку
                             </button>
-                            <a href="{% url 'applicant:view'%}">Отмена</a>
+                            <a href="{% url 'applicant:applicant_view'%}">Отмена</a>
                         </div>
                     </form>
                 </div>

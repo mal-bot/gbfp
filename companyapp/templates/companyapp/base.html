@@ -30,19 +30,35 @@
             <div class="pt-2 pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between align-items-center">
                     {% if request.resolver_match.url_name == 'view' %}
-                        <h4 class="text-gray-dark">{{title}} - {{ request.user|title }}</h4>
+                        <h4 class="text-gray-dark"> {{title}} - {{ request.user|title }}</h4>
                         <a class="mt-2 btn btn-outline-secondary"
                            href="{% url 'company:company_update' request.user.pk %}">
                             Редактировать профиль
                         </a>
                     {% elif request.resolver_match.url_name == 'vacancy_update' %}
                         <h4 class="text-gray-dark">Редактирование вакансии {{ form.name.value }}</h4>
-                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'company:view' %}">
+                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'company:company_view' %}">
                             Вернуться в личный кабинет
                         </a>
                     {% elif request.resolver_match.url_name == 'company_update' %}
                         <h4 class="text-gray-dark">Редактирование профиля {{ request.user.username }}</h4>
-                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'company:view' %}">
+                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'company:company_view' %}">
+                            Вернуться в личный кабинет
+                        </a>
+                    {% elif request.resolver_match.url_name == 'applicant_view' %}
+                        <h4 class="text-gray-dark"> {{title}} - {{ request.user|title }}</h4>
+                        <a class="mt-2 btn btn-outline-secondary"
+                           href="{% url 'applicant:applicant_update' request.user.pk %}">
+                            Редактировать профиль
+                        </a>
+                    {% elif request.resolver_match.url_name == 'resume_update' %}
+                        <h4 class="text-gray-dark">Редактирование резюме {{ form.name.value }}</h4>
+                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'applicant:applicant_view' %}">
+                            Вернуться в личный кабинет
+                        </a>
+                    {% elif request.resolver_match.url_name == 'applicant_update' %}
+                        <h4 class="text-gray-dark">Редактирование профиля {{ request.user.username }}</h4>
+                        <a class="mt-2 btn btn-outline-secondary" href="{% url 'applicant:applicant_view' %}">
                             Вернуться в личный кабинет
                         </a>
                     {% endif %}

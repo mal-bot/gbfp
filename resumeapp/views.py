@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from mainapp.models import Responses
+from mainapp.models import Responses, Favorites
 from resumeapp.forms import ResumeEditForm
 from resumeapp.models import Resume
 from django.http import HttpResponseRedirect
@@ -90,8 +90,11 @@ class ResumeDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['in_responses'] = False
-        response = Responses.objects.filter(resume_id=self.kwargs['pk'], user_id=self.request.user.pk)
-        print(response)
+        context['in_favorites'] = False
+        response = Responses.objects.filter(resume_id=self.kwargs['pk'], user_id=self.request.user.pk, is_active=True)
+        favorites = Favorites.objects.filter(resume_id=self.kwargs['pk'], user_id=self.request.user.pk, is_active=True)
         if response:
             context['in_responses'] = True
+        if favorites:
+            context['in_favorites'] = True
         return context

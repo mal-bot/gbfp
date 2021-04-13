@@ -1,4 +1,4 @@
-{% extends 'applicantapp/base.html' %}
+{% extends 'companyapp/base.html' %}
 
 {% block content %}
     <div class="col-12 h-100">
@@ -30,7 +30,7 @@
                 <div class="form-button mt-4">
                     <button class="btn btn-success w-md waves-effect waves-light">
                         {% if in_responses %}
-                        <a class="text-decoration-none text-white">Приглашен</a>
+                        <a href="{% url 'main:main_invite' object.pk %}" class="text-decoration-none text-white">Приглашен</a>
                         {% else %}
                         <a href="{% url 'main:main_invite' object.pk %}" class="text-decoration-none text-white">Пригласить</a>
                         {% endif %}
@@ -40,7 +40,7 @@
                     </button>
                     <button class="btn btn-light w-md waves-effect waves-light border-secondary">
                         {% if in_favorites %}
-                            <a href="#" class="text-dark"><i class="far fa-star" aria-hidden="true"></i></a>
+                            <a href="{% url 'main:main_favorites' object.pk %}" class="text-dark"><i class="fas fa-star"></i></a>
                         {% else %}
                             <a href="{% url 'main:main_favorites' object.pk %}" class="text-dark"><i class="far fa-star"></i></a>
                         {% endif %}
