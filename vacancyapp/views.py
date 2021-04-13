@@ -79,8 +79,15 @@ class VacancyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class VacancyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Vacancy
     success_url = reverse_lazy('company:view')
-    title = 'Удалить вакансию'
-    template_name = 'vacancyapp/vacancy_confirm_delete.html'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.is_active:
+            self.object.is_active = False
+        else:
+            self.object.is_active = True
+        self.object.save()
+        return HttpResponseRedirect(self.success_url)
 
     def test_func(self):
         obj = get_object_or_404(self.model, pk=self.kwargs['pk'])

@@ -62,8 +62,15 @@ class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class ResumeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Resume
     success_url = reverse_lazy('applicant:view')
-    title = 'Удалить резюме'
-    template_name = 'resumeapp/resume_confirm_delete.html'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.is_active:
+            self.object.is_active = False
+        else:
+            self.object.is_active = True
+        self.object.save()
+        return HttpResponseRedirect(self.success_url)
 
     def test_func(self):
         obj = get_object_or_404(self.model, pk=self.kwargs['pk'])

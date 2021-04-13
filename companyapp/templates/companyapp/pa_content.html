@@ -27,7 +27,8 @@
                     <th>#</th>
                     <th>Название</th>
                     <th>Черновик</th>
-                    <th>Опубликована</th>
+                    <th>Проверено<br>модератором</th>
+                    <th>Опубликовано</th>
                     <th>Действия</th>
                 </tr>
                 </thead>
@@ -37,14 +38,22 @@
                         <td>{{ vacancy.id }}</td>
                         <td>{{ vacancy.vacancy_name }}</td>
                         <td> {% if vacancy.is_draft %} Да {% else %} Нет {% endif %}</td>
+                        <td> {% if vacancy.is_approved %} Да {% else %} Нет {% endif %}</td>
                         <td> {% if vacancy.is_active %} Да {% else %} Нет {% endif %}</td>
                         <td>
-                            <a href="{% url 'vacancy:vacancy_detail' vacancy.pk %}"
-                               class="text-muted"><i class="fas fa-eye"></i></a>
+<!--                            <a href="{% url 'vacancy:vacancy_detail' vacancy.pk %}"-->
+<!--                               class="text-muted" title="Просмотр"><i class="fas fa-eye"></i></a>-->
                             <a href="{% url 'vacancy:vacancy_update' vacancy.pk %}"
-                               class="text-muted ms-2"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="{% url 'vacancy:vacancy_delete' vacancy.pk %}"
-                               class="text-muted ms-2"><i class="fas fa-times"></i></a>
+                               class="text-muted ms-2" title="Редактирование"><i class="fas fa-pencil-alt"></i></a>
+                            {% if vacancy.is_approved %}
+                                {% if vacancy.is_active %}
+                                   <a href="{% url 'vacancy:vacancy_delete' vacancy.pk %}" class="text-muted ms-2" title="Снять активность">
+                                       <i class="fa fa-toggle-on" aria-hidden="true"></i></a>
+                               {% else %}
+                                   <a href="{% url 'vacancy:vacancy_delete' vacancy.pk %}" class="text-muted ms-2" title="Установить активность">
+                                       <i class="fa fa-toggle-off" aria-hidden="true"></i></a>
+                               {% endif %}
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
