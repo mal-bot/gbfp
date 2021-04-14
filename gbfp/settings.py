@@ -138,15 +138,18 @@ MEDIA_ROOT = BASE_DIR / MEDIA_URL[1:-1]
 
 DOMAIN_NAME = 'http://localhost:8000'
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'gb@work.local'
-EMAIL_HOST_PASSWORD = 'gb'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = '2525'
+EMAIL_HOST_USER = 'dima_kopylov@mail.ru'
+EMAIL_HOST_PASSWORD = '0xgbp9EmiuDm21q3kDQS'
+EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # вариант python -m smtpd -n -c DebuggingServer localhost:25
 # EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
 
 # вариант логирования сообщений почты в виде файлов вместо отправки
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = 'tmp/email-messages/'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'tmp/email-messages/'
