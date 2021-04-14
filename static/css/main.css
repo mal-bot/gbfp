@@ -83,3 +83,17 @@ a {
 .table-striped > tbody > tr:nth-of-type(2n) {
     --bs-table-accent-bg: #f6f9fb!important;
 }
+
+.paginator {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.paginator a:first-child {
+    margin-right: 10px;
+}
+
+.paginator a:last-child {
+    margin-left: 10px;
+}
