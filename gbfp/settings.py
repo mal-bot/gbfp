@@ -28,7 +28,7 @@ with open(os.path.join(os.getcwd(), '.secret')) as secret:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -129,9 +129,10 @@ LOGIN_ERROR_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / '/static/'
 
 STATICFILES_DIRS = (
-    'static',
+    BASE_DIR / 'static',
 )
 MEDIA_URL = '/documents_folder/'
 MEDIA_ROOT = BASE_DIR / MEDIA_URL[1:-1]
