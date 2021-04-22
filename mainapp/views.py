@@ -13,7 +13,7 @@ from django.db.models import Q
 
 def main_news(request):
     blog_posts = BlogPost.objects.all()
-    company_list = User.objects.filter(is_partner=True)
+    company_list = User.objects.filter(is_partner=True, is_superuser=False)
     context = {
         'blog_posts': blog_posts,
         'company_list': company_list,
