@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-
+from django.utils import timezone
 import pytz
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -20,7 +20,7 @@ class User(AbstractUser):
     activation_key = models.CharField(max_length=128, blank=True)
     activation_key_expires = models.DateTimeField(
         verbose_name='Актуальность ключа',
-        default=(datetime.now() + timedelta(hours=48))
+        default=(timezone.now() + timedelta(hours=48))
     )
 
     def is_activation_key_expired(self):
