@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from mainapp.models import BlogPost, Favorites
 from authapp.models import User
 from resumeapp.forms import ResumeSearchForm
@@ -13,10 +13,22 @@ from django.db.models import Q
 
 def main_news(request):
     blog_posts = BlogPost.objects.all()
+
+    paginator = Paginator(blog_posts, 5)
+    page = request.GET.get('page', 1)
+
+    try:
+        blog_posts = paginator.page(page)
+    except PageNotAnInteger:
+        blog_posts = paginator.page(1)
+    except EmptyPage:
+        blog_posts = paginator.page(paginator.num_pages)
+
     company_list = User.objects.filter(is_partner=True, is_superuser=False)
     context = {
         'blog_posts': blog_posts,
         'company_list': company_list,
+        'paginator': paginator
     }
     return render(request, 'mainapp/main.html', context)
 
@@ -95,7 +107,7 @@ def invite(request, pk):
             else:
                 check.is_active = False
                 check.save()
-    return vac_res_list(request)
+    return redirect(request.META['HTTP_REFERER'])
 
 
 def favorites(request, pk):
@@ -132,4 +144,4 @@ def favorites(request, pk):
             else:
                 check.is_active = False
                 check.save()
-    return vac_res_list(request)
+    return redirect(request.META['HTTP_REFERER'])

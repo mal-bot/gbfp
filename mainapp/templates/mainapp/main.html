@@ -2,19 +2,6 @@
 {% load static %}
 
 {% block content %}
-    <h3 class="text-center mb-3">Партнеры</h3>
-    <div class="row row-cols-1 row-cols-md-4 g-6">
-        {% for company in company_list %}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <a href="{% url 'company:company_detail' company.id %}" class="card-title text-decoration-none fs-6 text-decor-2">{{ company.company_name }}</a>
-                        <p class="card-text text-decor mt-2">{{ company.company_about }}</p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
 
     <h3 class="text-center mt-3 mb-3">Новости</h3>
     {% for post in blog_posts %}
@@ -26,4 +13,34 @@
             </div>
         </div>
     {% endfor %}
+
+    <div class="row justify-content-end">
+        <div class="paginator ">
+            {% if blog_posts.has_previous %}
+                <a href="?page={{ blog_posts.previous_page_number }}"><i class="fa fa-angle-double-left"
+                                                                         aria-hidden="true"></i></a>
+            {% endif %}
+            <span class="current">
+            Страница {{ blog_posts.number }} из {{ paginator.num_pages }}
+            </span>
+            {% if blog_posts.has_next %}
+                <a href="?page={{ blog_posts.next_page_number }}"><i class="fa fa-angle-double-right"
+                                                                     aria-hidden="false"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    <h3 class="text-center mb-3 mt-3">Партнеры</h3>
+    <div class="row row-cols-1 row-cols-md-4 g-6">
+        {% for company in company_list %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <a href="{% url 'company:company_detail' company.id %}"
+                           class="card-title text-decoration-none fs-6 text-decor-2">{{ company.company_name }}</a>
+                        <p class="card-text text-decor mt-2">{{ company.company_about }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
