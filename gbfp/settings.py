@@ -138,15 +138,15 @@ MEDIA_ROOT = BASE_DIR / MEDIA_URL[1:-1]
 
 DOMAIN_NAME = 'http://localhost:8000'
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'gb@work.local'
-EMAIL_HOST_PASSWORD = 'gb'
-EMAIL_USE_SSL = False
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST_USER = 'gb2.2@yandex.ru'
+EMAIL_HOST_PASSWORD = 'UZRwdy3y$8vj!g3'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # вариант python -m smtpd -n -c DebuggingServer localhost:25
 # EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
 
 # вариант логирования сообщений почты в виде файлов вместо отправки
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = 'tmp/email-messages/'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'tmp/email-messages/'
