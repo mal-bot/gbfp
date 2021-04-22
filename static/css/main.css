@@ -13,6 +13,10 @@ a {
     color: #1e88e5;
 }
 
+label {
+    margin-bottom: 6px;
+}
+
 #logo {
     /*background-color: red;*/
     border-radius: 50%;
@@ -65,7 +69,7 @@ a {
 }
 
 .shadow-sm {
-    box-shadow: 0 5px 10px rgba(0,0,0,.075)!important;
+    box-shadow: 0 5px 10px rgba(0,0,0,.045)!important;
 }
 
 .rounded {
@@ -96,4 +100,16 @@ a {
 
 .paginator a:last-child {
     margin-left: 10px;
+}
+
+.size > tbody > tr > td:nth-child(2) {
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;
+}
+
+.size > tbody > tr > td:nth-child(2):hover {
+    background: #f0f0f0;
+    white-space: normal;
 }

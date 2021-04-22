@@ -22,7 +22,7 @@ class ResumeSearchForm(forms.Form):
                                   widget=forms.TextInput(attrs={'placeholder': 'зарплата от'}))
     salary_max = forms.FloatField(required=False, label='ЗП до',
                                   widget=forms.TextInput(attrs={'placeholder': 'зарплата до'}))
-    resume_name = forms.CharField(required=False, label='Назавание резюме',
+    resume_name = forms.CharField(required=False, label='Название резюме',
                                   widget=forms.TextInput(attrs={'placeholder': 'Название резюме'}))
 
     def __init__(self, *args, **kwargs):

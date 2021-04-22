@@ -7,14 +7,14 @@
             <div class="mt-3">
                 {# тут должна быть картинка аватарки #}
                 {# <p> {{object.file}}</p> #}
-                <h2>{{ object.company_name }}</h2>
+                <h2 class="mb-3">{{ object.company_name }}</h2>
                 <h5> Основной вид деятельности:</h5>
                 <p> {{ object.company_main_business }}</p>
                 <h5> Электронная почта для связи:</h5>
                 <p> {{ object.email }}</p>
                 <h5> О компании:</h5>
                 <p> {{ object.company_about }}</p>
-                <h5> Компания основана {{ object.company_since }}</h5>
+                <p class="fst-italic"> Компания основана {{ object.company_since }}</p>
                 <div class="form-button mt-4">
                     <button class="btn btn-light w-md waves-effect waves-light border-secondary">
                         <a href="{% url 'main:vac_res_list' %}" class="text-dark text-decoration-none">Назад</a>
