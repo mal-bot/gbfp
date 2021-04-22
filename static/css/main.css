@@ -102,14 +102,16 @@ label {
     margin-left: 10px;
 }
 
-.size > tbody > tr > td:nth-child(2) {
-    white-space: nowrap;
+.text-decor {
     overflow: hidden;
-    padding: 5px;
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
-.size > tbody > tr > td:nth-child(2):hover {
-    background: #f0f0f0;
-    white-space: normal;
+.text-decor-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
