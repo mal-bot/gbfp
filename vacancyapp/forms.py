@@ -22,9 +22,9 @@ class VacancySearchForm(forms.Form):
                                   widget=forms.TextInput(attrs={'placeholder': 'зарплата от'}))
     salary_max = forms.FloatField(required=False, label='ЗП до',
                                   widget=forms.TextInput(attrs={'placeholder': 'зарплата до'}))
-    vacancy_name = forms.CharField(required=False, label='Назавание вакансии',
+    vacancy_name = forms.CharField(required=False, label='Название вакансии',
                                    widget=forms.TextInput(attrs={'placeholder': 'Название вакансии'}))
-    company = forms.CharField(required=False, label='Назавание компании',
+    company = forms.CharField(required=False, label='Название компании',
                               widget=forms.TextInput(attrs={'placeholder': 'Название компании'}))
 
     def __init__(self, *args, **kwargs):

@@ -13,6 +13,10 @@ a {
     color: #1e88e5;
 }
 
+label {
+    margin-bottom: 6px;
+}
+
 #logo {
     /*background-color: red;*/
     border-radius: 50%;
@@ -96,4 +100,16 @@ a {
 
 .paginator a:last-child {
     margin-left: 10px;
+}
+
+.size > tbody > tr > td:nth-child(2) {
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;
+}
+
+.size > tbody > tr > td:nth-child(2):hover {
+    background: #f0f0f0;
+    white-space: normal;
 }
