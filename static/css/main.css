@@ -69,7 +69,7 @@ label {
 }
 
 .shadow-sm {
-    box-shadow: 0 5px 10px rgba(0,0,0,.045)!important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .045) !important;
 }
 
 .rounded {
@@ -81,11 +81,11 @@ label {
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-    --bs-table-accent-bg: #fff!important;
+    --bs-table-accent-bg: #fff !important;
 }
 
 .table-striped > tbody > tr:nth-of-type(2n) {
-    --bs-table-accent-bg: #f6f9fb!important;
+    --bs-table-accent-bg: #f6f9fb !important;
 }
 
 .paginator {
@@ -114,4 +114,8 @@ label {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+}
+
+.nav-link.active {
+    font-weight: 600;
 }
