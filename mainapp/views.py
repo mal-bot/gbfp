@@ -2,10 +2,13 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from mainapp.models import BlogPost, Favorites
 from authapp.models import User
+from resumeapp.forms import ResumeSearchForm
+from vacancyapp.forms import VacancySearchForm
 from vacancyapp.models import Vacancy
 from resumeapp.models import Resume
 from mainapp.models import Responses
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 
 
 def main_news(request):
@@ -20,10 +23,26 @@ def main_news(request):
 
 def vac_res_list(request):
     if request.user.is_staff:
+        form = ResumeSearchForm
         data = Resume.objects.filter(is_draft=False, is_active=True, is_approved=True)
+        if request.GET.get('salary_min'):
+            data = data.filter(salary__gte=request.GET.get('salary_min'))
+        if request.GET.get('salary_max'):
+            data = data.filter(salary__lte=request.GET.get('salary_max'))
+        if request.GET.get('resume_name'):
+            data = data.filter(resume_name__contains=request.GET.get('resume_name'))
         title = 'Список резюме'
     else:
+        form = VacancySearchForm
         data = Vacancy.objects.filter(is_draft=False, is_active=True, is_approved=True)
+        if request.GET.get('salary_min'):
+            data = data.filter(salary__gte=request.GET.get('salary_min'))
+        if request.GET.get('salary_max'):
+            data = data.filter(salary__lte=request.GET.get('salary_max'))
+        if request.GET.get('vacancy_name'):
+            data = data.filter(vacancy_name__contains=request.GET.get('vacancy_name'))
+        if request.GET.get('company'):
+            data = data.filter(company__company_name__contains=request.GET.get('company'))
         title = 'Список вакансий'
     page = request.GET.get('page')
     paginator = Paginator(data, 5)
@@ -38,6 +57,7 @@ def vac_res_list(request):
         'title': title,
         'page': page,
         'data': data_paginator,
+        'form': form,
     }
     return render(request, 'mainapp/vacancy_list.html', context)
 

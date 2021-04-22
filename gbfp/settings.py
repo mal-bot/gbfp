@@ -28,7 +28,7 @@ with open(os.path.join(os.getcwd(), '.secret')) as secret:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -129,21 +129,25 @@ LOGIN_ERROR_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / '/static/'
 
 STATICFILES_DIRS = (
-    'static',
+    BASE_DIR / 'static',
 )
 MEDIA_URL = '/documents_folder/'
 MEDIA_ROOT = BASE_DIR / MEDIA_URL[1:-1]
 
 DOMAIN_NAME = 'http://localhost:8000'
 
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_HOST_USER = 'gb2.2@yandex.ru'
-EMAIL_HOST_PASSWORD = 'UZRwdy3y$8vj!g3'
-EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = '2525'
+EMAIL_HOST_USER = 'dima_kopylov@mail.ru'
+EMAIL_HOST_PASSWORD = '0xgbp9EmiuDm21q3kDQS'
 EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # вариант python -m smtpd -n -c DebuggingServer localhost:25
 # EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
 
