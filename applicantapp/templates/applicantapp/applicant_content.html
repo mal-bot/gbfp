@@ -74,7 +74,6 @@
                       cellspacing="0">
                <thead>
                    <tr>
-                       <th>#</th>
                        <th>Резюме, по которому Вас пригласили на обеседование</th>
                        <th>Кто пригласил</th>
                    </tr>
@@ -83,7 +82,6 @@
                    {% for item in responses_list %}
                        {% if item.resume %}
                            <tr>
-                               <td>{{ item.id }}</td>
                                <td>{{ item.resume.resume_name }}</td>
                                <td><a href="{% url 'company:company_detail' item.user.id %}" class="text-decoration-none">{{ item.user.company_name }}</a></td>
                            </tr>
